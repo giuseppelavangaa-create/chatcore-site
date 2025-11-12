@@ -1,0 +1,4 @@
+
+User-agent: *
+Allow: /
+Sitemap: https://chatcore.it/sitemap.xml
