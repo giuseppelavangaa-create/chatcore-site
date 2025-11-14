@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="utf-8" />
@@ -38,29 +37,36 @@
     }
 
     body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(circle at top left, rgba(14,165,255,0.12), transparent 55%),
-                  radial-gradient(circle at top right, rgba(37,211,102,0.10), transparent 55%),
-                  radial-gradient(circle at bottom, rgba(139,92,246,0.12), transparent 60%),
-                  var(--bg);
+      background-color: var(--bg);   /* solo colore pieno sotto */
       color: #e5e9f7;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* ===== Global layout ===== */
-
-    .grid-bg {
+    /* livello di sfondo continuo per tutta la pagina */
+    .page-bg {
       position: fixed;
       inset: 0;
+      z-index: -2;
       pointer-events: none;
-      opacity: 0.35;
-      background-image:
-        linear-gradient(var(--line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 80px 80px;
-      mask-image: radial-gradient(circle at 50% -10%, black 40%, transparent 75%);
-      z-index: -1;
+      background:
+        radial-gradient(circle at top left, rgba(14,165,255,0.12), transparent 55%),
+        radial-gradient(circle at top right, rgba(37,211,102,0.10), transparent 55%),
+        radial-gradient(circle at bottom, rgba(139,92,246,0.12), transparent 60%),
+        var(--bg);
+      background-repeat: no-repeat;  /* 👉 niente ripetizione */
+      background-size: cover;        /* 👉 copre tutto */
     }
+
+
+    /* ===== Global layout ===== */
 
     .container {
       max-width: 1200px;
@@ -104,136 +110,136 @@
       color: #c2c9dd;
       max-width: 700px;
     }
-/* ===== PRELOADER ATOMICO — VERSIONE INGRANDITA ===== */
+    /* ===== PRELOADER ATOMICO — VERSIONE INGRANDITA ===== */
 
-.preloader-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  background: radial-gradient(circle at top, rgba(14,165,255,0.18), transparent 55%),
-              radial-gradient(circle at bottom, rgba(37,211,102,0.18), transparent 60%),
-              #02030a;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 28px; /* leggermente più aria */
-  transition: opacity 0.7s ease, visibility 0.7s ease;
-}
+    .preloader-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: radial-gradient(circle at top, rgba(14,165,255,0.18), transparent 55%),
+                  radial-gradient(circle at bottom, rgba(37,211,102,0.18), transparent 60%),
+                  #02030a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px; /* leggermente più aria */
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
 
-.preloader-overlay.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
+    .preloader-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
 
-/* ===== ATOMO INGRANDITO ===== */
+    /* ===== ATOMO INGRANDITO ===== */
 
-.loader-atom {
-  position: relative;
-  width: 300px;   /* PRIMA era 150 */
-  height: 300px;  /* PRIMA era 150 */
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .loader-atom {
+      position: relative;
+      width: 300px;   /* PRIMA era 150 */
+      height: 300px;  /* PRIMA era 150 */
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-/* CORE (centro) INGRANDITO */
-.loader-core {
-  position: relative;
-  z-index: 2;
-  width: 150px;   /* PRIMA 78 */
-  height: 150px;  /* PRIMA 78 */
-  border-radius: 999px;
-  background: radial-gradient(circle at top, rgba(255,255,255,0.15), transparent 60%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    /* CORE (centro) INGRANDITO */
+    .loader-core {
+      position: relative;
+      z-index: 2;
+      width: 150px;   /* PRIMA 78 */
+      height: 150px;  /* PRIMA 78 */
+      border-radius: 999px;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.15), transparent 60%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-/* Logo più grande */
-.loader-core img {
-  max-width: 140px; /* PRIMA 70 */
-  max-height: 140px;
-  display: block;
-}
+    /* Logo più grande */
+    .loader-core img {
+      max-width: 140px; /* PRIMA 70 */
+      max-height: 140px;
+      display: block;
+    }
 
-/* ===== ORBITE INGRANDITE ===== */
+    /* ===== ORBITE INGRANDITE ===== */
 
-.loader-orbit {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 4px solid rgba(148,163,253,0.5); /* più spesse */
-  box-shadow: 0 0 20px rgba(129,140,248,0.6);
-  transform-origin: 50% 50%;
-}
+    .loader-orbit {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 4px solid rgba(148,163,253,0.5); /* più spesse */
+      box-shadow: 0 0 20px rgba(129,140,248,0.6);
+      transform-origin: 50% 50%;
+    }
 
-.loader-orbit::before {
-  content: "";
-  position: absolute;
-  top: -10px;     /* PRIMA -6 */
-  left: 50%;
-  width: 18px;    /* PRIMA 10 */
-  height: 18px;   /* PRIMA 10 */
-  margin-left: -9px;
-  border-radius: 999px;
-  background: radial-gradient(circle, #e0f2fe, #0ea5ff);
-  box-shadow: 0 0 18px rgba(56,189,248,0.9);
-}
+    .loader-orbit::before {
+      content: "";
+      position: absolute;
+      top: -10px;     /* PRIMA -6 */
+      left: 50%;
+      width: 18px;    /* PRIMA 10 */
+      height: 18px;   /* PRIMA 10 */
+      margin-left: -9px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #e0f2fe, #0ea5ff);
+      box-shadow: 0 0 18px rgba(56,189,248,0.9);
+    }
 
-.orbit-1 {
-  transform: rotate(0deg) skewX(18deg);
-  animation: orbit-spin-1 3.2s linear infinite;
-}
+    .orbit-1 {
+      transform: rotate(0deg) skewX(18deg);
+      animation: orbit-spin-1 3.2s linear infinite;
+    }
 
-.orbit-2 {
-  transform: rotate(60deg) skewX(18deg);
-  border-color: rgba(45,212,191,0.7);
-  box-shadow: 0 0 20px rgba(45,212,191,0.7);
-  animation: orbit-spin-2 3.8s linear infinite;
-}
+    .orbit-2 {
+      transform: rotate(60deg) skewX(18deg);
+      border-color: rgba(45,212,191,0.7);
+      box-shadow: 0 0 20px rgba(45,212,191,0.7);
+      animation: orbit-spin-2 3.8s linear infinite;
+    }
 
-.orbit-2::before {
-  background: radial-gradient(circle, #bbf7d0, #22c55e);
-  box-shadow: 0 0 20px rgba(34,197,94,0.9);
-}
+    .orbit-2::before {
+      background: radial-gradient(circle, #bbf7d0, #22c55e);
+      box-shadow: 0 0 20px rgba(34,197,94,0.9);
+    }
 
-.orbit-3 {
-  transform: rotate(120deg) skewX(18deg);
-  border-color: rgba(244,114,182,0.7);
-  box-shadow: 0 0 20px rgba(244,114,182,0.7);
-  animation: orbit-spin-3 4.5s linear infinite;
-}
+    .orbit-3 {
+      transform: rotate(120deg) skewX(18deg);
+      border-color: rgba(244,114,182,0.7);
+      box-shadow: 0 0 20px rgba(244,114,182,0.7);
+      animation: orbit-spin-3 4.5s linear infinite;
+    }
 
-.orbit-3::before {
-  background: radial-gradient(circle, #f9a8d4, #ec4899);
-  box-shadow: 0 0 20px rgba(236,72,153,0.9);
-}
+    .orbit-3::before {
+      background: radial-gradient(circle, #f9a8d4, #ec4899);
+      box-shadow: 0 0 20px rgba(236,72,153,0.9);
+    }
 
-@keyframes orbit-spin-1 {
-  from { transform: rotate(0deg) skewX(18deg); }
-  to   { transform: rotate(360deg) skewX(18deg); }
-}
+    @keyframes orbit-spin-1 {
+      from { transform: rotate(0deg) skewX(18deg); }
+      to   { transform: rotate(360deg) skewX(18deg); }
+    }
 
-@keyframes orbit-spin-2 {
-  from { transform: rotate(60deg) skewX(18deg); }
-  to   { transform: rotate(420deg) skewX(18deg); }
-}
+    @keyframes orbit-spin-2 {
+      from { transform: rotate(60deg) skewX(18deg); }
+      to   { transform: rotate(420deg) skewX(18deg); }
+    }
 
-@keyframes orbit-spin-3 {
-  from { transform: rotate(120deg) skewX(18deg); }
-  to   { transform: rotate(480deg) skewX(18deg); }
-}
+    @keyframes orbit-spin-3 {
+      from { transform: rotate(120deg) skewX(18deg); }
+      to   { transform: rotate(480deg) skewX(18deg); }
+    }
 
-/* Testo */
-.loader-text {
-  font-size: 1.2rem; /* leggermente più grande */
-  color: var(--muted);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
+    /* Testo */
+    .loader-text {
+      font-size: 1.2rem; /* leggermente più grande */
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
 
 
     /* ===== NAVBAR ===== */
@@ -324,17 +330,19 @@
 
     /* Mobile nav */
     .nav-toggle {
-      display: none;
       margin-left: auto;
       cursor: pointer;
       width: 26px;
       height: 26px;
       border-radius: 8px;
-      border: 1px solid rgba(43,53,80,0.9);
+      border: none;          /* se vuoi solo le 3 linee senza bordino */
+      background: transparent;
       display: none;
       align-items: center;
       justify-content: center;
+      padding: 0;
     }
+
 
     .nav-toggle span,
     .nav-toggle span::before,
@@ -377,6 +385,18 @@
         display: flex;
       }
     }
+    /* voci principali del menu: Servizi + Come funziona */
+      .nav-link-main {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      /* leggero tweak anche al bottone demo per armonizzarlo */
+      .nav-cta {
+        font-size: 0.98rem;
+        font-weight: 700;
+      }
+
     /* === NAVBAR LOGO & BRANDING === */
 
     .logo {
@@ -585,7 +605,57 @@
       padding: 8px 10px;
       border-radius: 14px;
       line-height: 1.25;
+      opacity: 0;                       /* parte nascosto */
+      transform: translateY(6px);
+      transition: opacity 0.35s ease-out, transform 0.35s ease-out;
     }
+
+    /* quando aggiungiamo questa classe da JS il messaggio “entra” */
+    .msg.msg-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+.phone-typing {
+  display: none;
+  max-width: 70%;
+  padding: 6px 10px;
+  border-radius: 14px;
+  gap: 4px;
+}
+
+/* quando sta scrivendo il cliente (bolle scure a sinistra) */
+.phone-typing.typing-left {
+  align-self: flex-start;
+  margin-left: 4px;
+  background: #020617;
+  border: 1px solid #1e293b;
+}
+
+/* quando sta scrivendo il bot (bolle verdi a destra) */
+.phone-typing.typing-right {
+  align-self: flex-end;
+  margin-right: 4px;
+  background: #022c22;
+  border: 1px solid #16a34a;
+}
+
+.phone-typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #9ca3af;
+  opacity: 0.5;
+  animation: typing-bounce 1s infinite ease-in-out;
+}
+
+.phone-typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.phone-typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+
 
     .msg-client {
       align-self: flex-start;
@@ -734,20 +804,35 @@
       }
     }
 
+    /* ===== STEPS ===== */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px; /* un po' più aria sotto il titolo */
+    }
+
+    @media (max-width: 950px) {
+      .steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
     .step {
       border-radius: var(--radius-md);
       border: 1px solid rgba(30,64,175,0.7);
       background: radial-gradient(circle at top left, rgba(37,99,235,0.20), transparent 60%),
                   rgba(12,17,31,0.98);
-      padding: 22px 18px 20px;
+      padding: 34px 18px 20px;  /* 🔥 top più alto per far spazio al numero */
       position: relative;
       overflow: hidden;
     }
 
     .step-number {
       position: absolute;
-      top: -12px;
-      left: 14px;
+      top: 10px;      /* 🔥 non più negativo: il cerchio sta dentro la card */
+      left: 16px;
       width: 30px;
       height: 30px;
       border-radius: 999px;
@@ -762,9 +847,10 @@
     }
 
     .step h3 {
-      margin-top: 16px;
+      margin-top: 14px;  /* testo ben distanziato dal numero */
       margin-bottom: 6px;
     }
+
 
     /* ===== PRICING ===== */
 
@@ -1025,11 +1111,10 @@
     }
 
     .footer-mini-logo {
-      width: 22px;
-      height: 22px;
-      border-radius: 8px;
-      background: conic-gradient(from 210deg, var(--acc-2), var(--acc-3), var(--acc-1));
+      width: 32px;
+      height: 32px;
     }
+
 
     .footer-links a {
       color: #93c5fd;
@@ -1079,11 +1164,12 @@
     }
 
     .section-kicker {
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #9ca3af;
+      font-size: 1.6rem;   /* 🔥 qui decidi tu quanto grande: 1.4 / 1.6 / 1.8 / 2 */
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: 0;
+      color: #e5e9f7;
+      margin-bottom: 4px;
     }
 
     .section-sub {
@@ -1096,6 +1182,8 @@
 </head>
 
 <body id="top">
+  <div class="page-bg"></div>
+  <!-- poi il resto del contenuto: preloader, header, hero, ecc. -->
 <!-- PRELOADER CHATCORE — ORBITE  -->
 <div class="preloader-overlay" id="preloader">
   <div class="loader-atom">
@@ -1109,37 +1197,30 @@
   </div>
 </div>
 
-
-
-
-  <div class="grid-bg"></div>
-  <!-- il resto rimane uguale -->
-  <div class="grid-bg"></div>
-
   <!-- NAVBAR -->
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="logo" href="#top">
-        <img src="chatcorelogo3.png" class="nav-logo-img" alt="ChatCore logo">
-        <span class="logo-word">Chat<span class="core-accent">Core</span></span>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#top">
+      <img src="chatcorelogo3.png" class="nav-logo-img" alt="ChatCore logo">
+      <span class="logo-word">Chat<span class="core-accent">Core</span></span>
+    </a>
+
+    <div class="nav-links">
+      <a class="nav-link nav-link-main" href="#funzioni">Servizi</a>
+      <a class="nav-link nav-link-main" href="#come-funziona">Come funziona</a>
+      <a class="nav-link nav-link-secondary" href="#prezzi">Preventivo</a>
+      <a class="nav-cta" href="https://wa.me/15556350423?text=Prova%20ChatCore" target="_blank" rel="noopener">
+        <span class="dot"></span> Demo WhatsApp
       </a>
-
-
-      <div class="nav-links">
-        <a class="nav-link" href="#funzioni">Servizi</a>
-        <a class="nav-link" href="#come-funziona">Come funziona</a>
-        <a class="nav-link" href="#prezzi">Preventivo</a>
-
-        <a class="nav-cta" href="https://wa.me/15556350423?text=Prova%20ChatCore" target="_blank" rel="noopener">
-          <span class="dot"></span> Demo WhatsApp
-        </a>
-      </div>
-
-      <button class="nav-toggle" type="button" aria-label="Apri il menu" id="navToggle">
-        <span></span>
-      </button>
     </div>
-  </header>
+
+    <!-- 👇 bottone hamburger con 3 linee -->
+    <button id="navToggle" class="nav-toggle" aria-label="Apri il menu di navigazione">
+      <span></span>
+    </button>
+  </div>
+</header>
+
 
   <!-- HERO -->
   <main>
@@ -1147,8 +1228,8 @@
       <div class="container hero-grid">
         <div>
           <h1 class="hero-title-gradient">
-            Automatizza risposte e prenotazioni<br />dal tuo WhatsApp.
-          </h1>
+            Crea il tuo sito,
+             Automatizza risposte e prenotazioni su WhatsApp          </h1>
 
           <p class="lead hero-sub">
             ChatCore risponde ai clienti, fa le domande giuste e raccoglie le prenotazioni in automatico, usando il tuo numero WhatsApp Business.
@@ -1159,7 +1240,7 @@
               📲 Provalo su WhatsApp
             </a>
             <a class="btn-secondary" href="#prezzi">
-              Vedi i prezzi
+              Vai a preventivo
             </a>
           </div>
 
@@ -1175,47 +1256,55 @@
                 <div class="phone-top-left">
                   <div class="phone-avatar"></div>
                   <div>
-                    <div style="font-weight:600;font-size:0.76rem;">ChatCore Bot</div>
+                    <div style="font-weight:600;font-size:0.76rem;">ChatCore </div>
                     <div style="font-size:0.73rem;color:#9ca3af;">online ora</div>
                   </div>
                 </div>
-                <div style="font-size:0.7rem;color:#9ca3af;">WhatsApp</div>
               </div>
 
               <div class="phone-chat">
-                <div class="msg msg-client">
-                  Ciao 👋 posso prenotare un taglio domani pomeriggio?
-                </div>
-                <div class="msg msg-bot">
-                  Ciao! Certo 🙂<br />
-                  Ho questi orari liberi domani:<br />
-                  <strong>16:00 • 16:30 • 17:00</strong><br />
-                  Rispondi con l’orario che preferisci.
-                </div>
-                <div class="msg msg-client">
-                  Perfetto, 17:00 a nome Marco 🙌
-                </div>
-                <div class="msg msg-bot">
-                  Prenotazione salvata per <strong>Marco</strong> alle <strong>17:00</strong> ✅<br />
-                  Ti manderò un promemoria prima dell’appuntamento.
-                  <div class="msg-options">
-                    <span class="msg-pill">📅 Aggiungi promemoria</span>
-                    <span class="msg-pill">🕒 Cambia orario</span>
+                      <div class="msg msg-client">
+                        Ciao 👋 posso prenotare un taglio domani pomeriggio?
+                      </div>
+                      <div class="msg msg-bot">
+                        Ciao! Certo 🙂<br />
+                        Ho questi orari liberi domani:<br />
+                        <strong>16:00 • 16:30 • 17:00</strong><br />
+                        Rispondi con l’orario che preferisci.
+                      </div>
+                      <div class="msg msg-client">
+                        Perfetto, 17:00 a nome Marco 🙌
+                      </div>
+                      <div class="msg msg-bot">
+                        Prenotazione salvata per <strong>Marco</strong> alle <strong>17:00</strong> ✅<br />
+                        Ti manderò un promemoria prima dell’appuntamento.
+                        <div class="msg-options">
+                          <span class="msg-pill">📅 Aggiungi promemoria</span>
+                          <span class="msg-pill">🕒 Cambia orario</span>
+                        </div>
+                      </div>
+
+                      <!-- SEMPRE ALLA FINE DELLA CHAT -->
+                      <div class="phone-typing" id="phoneTyping">
+                        <span class="phone-typing-dot"></span>
+                        <span class="phone-typing-dot"></span>
+                        <span class="phone-typing-dot"></span>
+                      </div>
+                    </div>
+
+                    <!-- 👇 ORA phone-bottom è DENTRO phone-inner -->
+                    <div class="phone-bottom">
+                      <div class="phone-status">
+                        <span class="phone-status-dot"></span>
+                        <span>Risposta automatica ChatCore</span>
+                      </div>
+                      <div>✔✔</div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="phone-bottom">
-                <div class="phone-status">
-                  <span class="phone-status-dot"></span>
-                  <span>Risposta automatica ChatCore</span>
-                </div>
-                <div>✔✔</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+ 
     </section>
 
     <!-- STRIP: per chi è -->
@@ -1474,52 +1563,6 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-kicker">Feedback</div>
-          <h2>Cosa dicono le attività che lo usano</h2>
-          <p class="section-sub">
-            Esempi basati su casi pilota reali. Ogni attività è diversa: risultati e numeri possono cambiare.
-          </p>
-        </div>
-
-        <div class="testimonials-grid">
-          <div class="testimonial-card">
-            “Prima perdevo un sacco di messaggi la sera. Ora ChatCore risponde e conferma le richieste al volo. Nel primo mese ho visto più appuntamenti fissati senza dover richiamare nessuno.”
-            <div class="testimonial-footer">
-              <div class="avatar"></div>
-              <div class="avatar-info">
-                <strong>Marco</strong><br />
-                <span class="muted">Barbiere</span>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            “I reminder automatici hanno ridotto i mancati arrivi. È come avere una segretaria che lavora anche quando io non ci sono.”
-            <div class="testimonial-footer">
-              <div class="avatar"></div>
-              <div class="avatar-info">
-                <strong>Elisa</strong><br />
-                <span class="muted">Estetista</span>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            “La configurazione iniziale è stata veloce e i messaggi sono scritti con il nostro tono. I clienti pensano che rispondiamo noi, ma dietro c’è ChatCore.”
-            <div class="testimonial-footer">
-              <div class="avatar"></div>
-              <div class="avatar-info">
-                <strong>Davide</strong><br />
-                <span class="muted">PT &amp; Wellness</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- FAQ -->
     <section class="section">
       <div class="container">
@@ -1564,21 +1607,22 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-left">
-        <div class="footer-mini-logo"></div>
-        <span><strong>ChatCore</strong></span>
-      </div>
-      <div class="footer-links">
-        © 2025 ChatCore
-        •
-        <a href="privacy.html">Privacy</a>
-        <span>• Questo sito non usa cookie di profilazione né analytics di terze parti.</span>
-      </div>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+  <div class="footer-left">
+    <img src="chatcorelogo3.png" alt="ChatCore Logo" class="footer-mini-logo">
+    <span><strong>ChatCore</strong></span>
+  </div>
+
+    <div class="footer-links">
+      © 2025 ChatCore •
+      <a href="privacy.html">Privacy</a>
+      <span>• Questo sito non usa cookie di profilazione né analytics di terze parti.</span>
     </div>
-  </footer>
+  </div>
+</footer>
+
 
   <!-- FLOATING WHATSAPP -->
   <div class="wa-float">
@@ -1611,15 +1655,80 @@
       }
     });
   });
+  // Animazione chat nel telefono
+  function initPhoneChatAnimation() {
+    const phoneChat = document.querySelector('.phone-chat');
+    if (!phoneChat) return;
 
-  // PRELOADER: nascondi quando la pagina ha finito di caricare
+    const msgs = Array.from(phoneChat.querySelectorAll('.msg'));
+    const typing = document.getElementById('phoneTyping');
+    if (!msgs.length || !typing) return;
+
+    // reset iniziale
+    msgs.forEach(msg => msg.classList.remove('msg-visible'));
+    typing.style.display = 'none';
+    typing.classList.remove('typing-left', 'typing-right');
+
+    const steps = [];
+
+    // Costruisco la sequenza: prima puntini (lato giusto), poi messaggio
+    msgs.forEach((msg, index) => {
+      const isBot = msg.classList.contains('msg-bot');
+      const role = isBot ? 'bot' : 'client';
+
+      // se vuoi saltare i puntini sul PRIMO messaggio, metti: if (index > 0) { ... }
+      steps.push({ type: 'typing', role, duration: 800 });
+      steps.push({ type: 'show', msg, duration: 1600 });
+    });
+
+    let i = 0;
+
+    function runStep() {
+      if (i >= steps.length) {
+        typing.style.display = 'none';
+        return;
+      }
+
+      const step = steps[i];
+
+      if (step.type === 'typing') {
+        // metto i puntini sempre in fondo alla chat
+        phoneChat.appendChild(typing);
+
+        typing.style.display = 'flex';
+
+        const isBot = step.role === 'bot';
+        typing.classList.toggle('typing-right', isBot);   // bot a destra
+        typing.classList.toggle('typing-left', !isBot);   // cliente a sinistra
+
+      } else if (step.type === 'show') {
+        typing.style.display = 'none';
+        step.msg.classList.add('msg-visible');
+      }
+
+      i++;
+      setTimeout(runStep, step.duration);
+    }
+
+    runStep();
+  }
+
+
+   // PRELOADER: nascondi quando la pagina ha finito di caricare
   window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
-    if (!preloader) return;
-    // leggero delay per evitare flash
-    setTimeout(() => {
-      preloader.classList.add('hidden');
-    }, 1400);
+
+    // nascondo il preloader
+    if (preloader) {
+      setTimeout(() => {
+        preloader.classList.add('hidden');
+        // dopo il preloader facciamo partire l'animazione del telefono
+        initPhoneChatAnimation();
+      }, 1400);
+    } else {
+      // se per qualche motivo non c'è il preloader, avvio subito l'animazione
+      initPhoneChatAnimation();
+    }
   });
 </script>
 
