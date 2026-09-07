@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ChatCore — Collega WhatsApp</title>
+  <meta name="description" content="Collega il tuo numero WhatsApp Business a ChatCore in pochi passaggi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#070910;--panel:#101321;--muted:#9ea7c0;--line:#1d2234;--acc-1:#25d366;--acc-2:#0ea5ff;--acc-3:#8b5cf6;--shadow-soft:0 14px 40px rgba(0,0,0,.55)}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%}
+    body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:#e5e9f7;overflow-x:hidden}
+    .page-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(circle at top left,rgba(14,165,255,.12),transparent 55%),radial-gradient(circle at top right,rgba(37,211,102,.10),transparent 55%),radial-gradient(circle at bottom,rgba(139,92,246,.12),transparent 60%),var(--bg)}
+    .nav{border-bottom:1px solid rgba(34,41,66,.95);background:linear-gradient(to bottom,rgba(7,9,16,.96),rgba(7,9,16,.80));backdrop-filter:blur(14px)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:12px 18px;display:flex;align-items:center}
+    .logo{display:flex;align-items:center;gap:12px;text-decoration:none}.nav-logo-img{height:58px;width:auto;border-radius:10px}
+    .logo-word{font-family:Montserrat,Inter,sans-serif;font-size:1.35rem;font-weight:800;letter-spacing:.3px;background:linear-gradient(90deg,#0ea5ff 0%,#25d366 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .wrapper{min-height:calc(100vh - 84px);display:grid;place-items:center;padding:48px 18px 64px}
+    .signup-shell{width:100%;max-width:760px;border-radius:24px;border:1px solid rgba(34,43,74,.95);background:radial-gradient(circle at top left,rgba(14,165,255,.12),transparent 45%),radial-gradient(circle at bottom right,rgba(37,211,102,.10),transparent 45%),linear-gradient(180deg,rgba(15,23,42,.97),rgba(5,8,22,.98));box-shadow:var(--shadow-soft);padding:34px 30px 28px}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;background:rgba(14,22,39,.95);border:1px solid rgba(37,99,235,.55);font-size:.78rem;font-weight:600;color:#c3d4ff;margin-bottom:16px}.badge-dot{width:8px;height:8px;border-radius:999px;background:var(--acc-1);box-shadow:0 0 0 5px rgba(37,211,102,.20)}
+    h1{margin:0;font-family:Montserrat,Inter,sans-serif;font-size:clamp(2rem,5vw,3.1rem);line-height:1.05;background:linear-gradient(110deg,#f9fafb 0%,#e5ecff 40%,#a5f3fc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .lead{margin-top:16px;color:#c2c9dd;font-size:1.04rem;line-height:1.65;max-width:640px}
+    .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:26px 0}.step{border-radius:16px;border:1px solid rgba(30,64,175,.55);background:rgba(12,17,31,.82);padding:16px}.step-num{width:28px;height:28px;border-radius:999px;display:grid;place-items:center;font-size:.82rem;font-weight:800;color:#020617;background:linear-gradient(135deg,var(--acc-2),var(--acc-3));margin-bottom:10px}.step strong{display:block;font-size:.94rem;margin-bottom:5px}.step span{color:var(--muted);font-size:.84rem;line-height:1.45}
+    .cta{width:100%;border:0;border-radius:999px;padding:15px 22px;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(90deg,var(--acc-2),var(--acc-1));color:#04110a;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 12px 32px rgba(37,211,102,.35),0 10px 28px rgba(14,165,255,.22);transition:transform .18s ease,filter .18s ease}.cta:hover{transform:translateY(-1px);filter:brightness(1.04)}.cta:disabled{opacity:.6;cursor:wait;transform:none}
+    .note{margin-top:14px;text-align:center;color:var(--muted);font-size:.82rem;line-height:1.5}.status{display:none;margin-top:18px;border-radius:14px;border:1px solid var(--line);padding:13px 14px;font-size:.9rem;line-height:1.5}.status.show{display:block}.status.ok{color:#bbf7d0;border-color:rgba(34,197,94,.5);background:rgba(34,197,94,.08)}.status.err{color:#fecaca;border-color:rgba(239,68,68,.5);background:rgba(239,68,68,.08)}
+    @media(max-width:720px){.signup-shell{padding:26px 18px 22px}.steps{grid-template-columns:1fr}.nav-logo-img{height:48px}.logo-word{font-size:1.18rem}}
+  </style>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <header class="nav"><div class="nav-inner"><a class="logo" href="/"><img src="chatcorelogo3.png" class="nav-logo-img" alt="ChatCore logo"><span class="logo-word">ChatCore</span></a></div></header>
+  <main class="wrapper">
+    <section class="signup-shell">
+      <div class="badge"><span class="badge-dot"></span> Collegamento sicuro tramite Meta</div>
+      <h1>Collega il tuo WhatsApp a ChatCore</h1>
+      <p class="lead">In pochi passaggi colleghi il numero WhatsApp Business della tua attività. L'accesso e la verifica del numero avvengono direttamente tramite Meta.</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><strong>Accedi con Meta</strong><span>Usa l'account che vuoi associare alla tua attività.</span></div>
+        <div class="step"><div class="step-num">2</div><strong>Seleziona l'attività</strong><span>Scegli o crea il Business Portfolio della tua attività.</span></div>
+        <div class="step"><div class="step-num">3</div><strong>Verifica il numero</strong><span>Inserisci il numero WhatsApp e conferma il codice richiesto da Meta.</span></div>
+      </div>
+      <button class="cta" id="connectBtn" type="button"><span>💬</span><span>Collega WhatsApp</span></button>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+      <p class="note">ChatCore non riceve la tua password Facebook/Meta. L'autorizzazione viene gestita direttamente da Meta.</p>
+    </section>
+  </main>
+  <script>
+    const META_APP_ID = "828097236621663";
+    const EMBEDDED_SIGNUP_CONFIG_ID = "3175679455925769";
+    const CHATCORE_BACKEND_ENDPOINT = "";
+
+    const statusBox = document.getElementById("status");
+    const connectBtn = document.getElementById("connectBtn");
+    const signupData = {code:null,waba_id:null,phone_number_id:null};
+
+    function showStatus(message,type="ok"){statusBox.textContent=message;statusBox.className=`status show ${type}`}
+
+    window.fbAsyncInit=function(){FB.init({appId:META_APP_ID,autoLogAppEvents:true,xfbml:true,version:"v23.0"})};
+    (function(d,s,id){if(d.getElementById(id))return;const js=d.createElement(s);js.id=id;js.async=true;js.defer=true;js.crossOrigin="anonymous";js.src="https://connect.facebook.net/en_US/sdk.js";const fjs=d.getElementsByTagName(s)[0];fjs.parentNode.insertBefore(js,fjs)}(document,"script","facebook-jssdk"));
+
+    window.addEventListener("message",function(event){
+      if(event.origin!=="https://www.facebook.com"&&event.origin!=="https://web.facebook.com")return;
+      let data=event.data;try{if(typeof data==="string")data=JSON.parse(data)}catch(_){return}
+      if(!data||data.type!=="WA_EMBEDDED_SIGNUP")return;
+      if(data.event==="FINISH"){signupData.waba_id=data.data?.waba_id||null;signupData.phone_number_id=data.data?.phone_number_id||null;showStatus("Numero WhatsApp collegato correttamente a ChatCore.","ok");sendToBackendIfReady()}
+      if(data.event==="CANCEL")showStatus("Configurazione interrotta. Puoi riprovare quando vuoi.","err");
+      if(data.event==="ERROR")showStatus("Meta ha restituito un errore durante il collegamento. Riprova.","err");
+    });
+
+    connectBtn.addEventListener("click",function(){
+      if(META_APP_ID.includes("INSERISCI_QUI")){showStatus("Prima inserisci l'App ID Meta di ChatCore nel file HTML.","err");return}
+      if(typeof FB==="undefined"){showStatus("Il collegamento a Meta non è ancora pronto. Ricarica la pagina e riprova.","err");return}
+      connectBtn.disabled=true;
+      FB.login(function(response){connectBtn.disabled=false;if(response.authResponse?.code){signupData.code=response.authResponse.code;sendToBackendIfReady()}else if(!response.authResponse){showStatus("Accesso Meta non completato.","err")}},
+      {config_id:EMBEDDED_SIGNUP_CONFIG_ID,response_type:"code",override_default_response_type:true,extras:{setup:{},featureType:"whatsapp_embedded_signup",sessionInfoVersion:"3"}})
+    });
+
+    async function sendToBackendIfReady(){
+      if(!CHATCORE_BACKEND_ENDPOINT)return;
+      if(!signupData.code||!signupData.waba_id||!signupData.phone_number_id)return;
+      try{const response=await fetch(CHATCORE_BACKEND_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(signupData)});if(!response.ok)throw new Error("Backend error")}
+      catch(err){console.error(err);showStatus("WhatsApp collegato, ma ChatCore non è riuscito a salvare automaticamente i dati.","err")}
+    }
+  </script>
+</body>
+</html>
