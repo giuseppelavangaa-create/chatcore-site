@@ -3,361 +3,862 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Termini e Condizioni | ChatCore</title>
+
+<title>ChatCore — Termini e Condizioni</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
-* {
-    box-sizing: border-box;
+
+:root{
+  --bg:#070910;
+  --bg-soft:#0d1019;
+  --panel:#101321;
+  --panel-soft:#111623;
+  --muted:#9ea7c0;
+  --line:#1d2234;
+  --acc-1:#25d366;
+  --acc-2:#0ea5ff;
+  --acc-3:#8b5cf6;
+  --radius-lg:20px;
+  --radius-md:16px;
+  --radius-sm:12px;
+  --shadow-soft:0 14px 40px rgba(0,0,0,.55);
 }
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f7f9fc;
-    color: #1b1f24;
-    line-height: 1.7;
+*{
+  box-sizing:border-box;
 }
 
-.header {
-    background: #111827;
-    padding: 28px 20px;
+html{
+  scroll-behavior:smooth;
 }
 
-.header-inner {
-    max-width: 900px;
-    margin: auto;
+body{
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:#e5e9f7;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  line-height:1.7;
+  overflow-x:hidden;
 }
 
-.logo {
-    color: white;
-    font-size: 27px;
-    font-weight: 800;
-    text-decoration: none;
+.page-bg{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at top left,rgba(14,165,255,.12),transparent 55%),
+    radial-gradient(circle at top right,rgba(37,211,102,.10),transparent 55%),
+    radial-gradient(circle at bottom,rgba(139,92,246,.12),transparent 60%),
+    var(--bg);
+  background-repeat:no-repeat;
+  background-size:cover;
 }
 
-.logo span {
-    color: #25D366;
+/* NAVBAR */
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(14px);
+  background:linear-gradient(
+    to bottom,
+    rgba(7,9,16,.94),
+    rgba(7,9,16,.75)
+  );
+  border-bottom:1px solid rgba(34,41,66,.95);
 }
 
-.container {
-    max-width: 900px;
-    margin: 45px auto;
-    padding: 0 20px 60px;
+.nav-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+  gap:16px;
 }
 
-.card {
-    background: white;
-    border-radius: 14px;
-    padding: 30px;
-    margin-bottom: 20px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
 }
 
-h1 {
-    font-size: 36px;
-    margin-bottom: 8px;
+.nav-logo-img{
+  height:58px;
+  width:auto;
+  border-radius:10px;
 }
 
-h2 {
-    font-size: 21px;
-    margin-top: 0;
-    color: #111827;
+.logo-word{
+  font-family:Montserrat,Inter,sans-serif;
+  font-size:1.35rem;
+  font-weight:800;
+  letter-spacing:.3px;
+  background:linear-gradient(
+    90deg,
+    #0ea5ff 0%,
+    #25d366 100%
+  );
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
-p, li {
-    color: #4b5563;
+.nav-links{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
-a {
-    color: #16a34a;
-    text-decoration: none;
+.nav-link{
+  padding:8px 12px;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:.92rem;
+  font-weight:600;
+  color:#dbe4ff;
+  transition:.2s;
 }
 
-a:hover {
-    text-decoration: underline;
+.nav-link:hover{
+  background:rgba(21,26,46,.85);
 }
 
-.updated {
-    color: #6b7280;
-    margin-bottom: 35px;
+.nav-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 16px;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:.94rem;
+  font-weight:700;
+  background:linear-gradient(
+    90deg,
+    var(--acc-2),
+    var(--acc-1)
+  );
+  color:#04110a;
+  box-shadow:
+    0 12px 32px rgba(37,211,102,.25),
+    0 10px 28px rgba(14,165,255,.16);
 }
 
-.footer {
-    text-align: center;
-    color: #6b7280;
-    font-size: 14px;
-    padding: 30px 20px;
+.nav-cta .dot{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:#0b3017;
 }
+
+/* ACCENTO */
+
+.top-accent{
+  height:2px;
+  background:linear-gradient(
+    90deg,
+    var(--acc-2),
+    var(--acc-3),
+    var(--acc-1)
+  );
+}
+
+/* CONTENUTO */
+
+.container{
+  max-width:1000px;
+  margin:0 auto;
+  padding:0 18px;
+}
+
+.hero{
+  padding:58px 0 34px;
+}
+
+.hero h1{
+  font-family:Montserrat,Inter,sans-serif;
+  font-size:clamp(2.2rem,4vw,3.35rem);
+  line-height:1.08;
+  letter-spacing:.02em;
+  margin:0 0 12px;
+  background:linear-gradient(
+    110deg,
+    #f9fafb 0%,
+    #e5ecff 40%,
+    #a5f3fc 100%
+  );
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero-sub{
+  color:var(--muted);
+  margin:0;
+  max-width:760px;
+}
+
+.updated{
+  color:var(--muted);
+  font-size:.9rem;
+  margin-top:10px;
+}
+
+/* CARD */
+
+.card{
+  border-radius:var(--radius-md);
+  border:1px solid rgba(34,43,74,.95);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15,23,42,.95),
+      rgba(9,12,25,.98)
+    );
+  padding:24px 22px;
+  margin:18px 0;
+  box-shadow:0 10px 26px rgba(0,0,0,.55);
+}
+
+.card h2{
+  font-family:Montserrat,Inter,sans-serif;
+  font-size:1.2rem;
+  margin:0 0 9px;
+  color:#e5e9f7;
+}
+
+.card p,
+.card li{
+  color:#b7c0d7;
+}
+
+.card strong{
+  color:#e5e9f7;
+}
+
+.card a{
+  color:#93c5fd;
+  text-decoration:none;
+}
+
+.card a:hover{
+  text-decoration:underline;
+}
+
+.card ul{
+  padding-left:22px;
+}
+
+/* FOOTER */
+
+.footer{
+  border-top:1px solid var(--line);
+  padding:20px 0 30px;
+  margin-top:42px;
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(15,23,42,.8),
+      rgba(3,6,18,.98)
+    );
+}
+
+.footer-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+  font-size:.86rem;
+  color:var(--muted);
+}
+
+.footer-left{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.footer-mini-logo{
+  width:32px;
+  height:32px;
+}
+
+.footer-links a{
+  color:#93c5fd;
+  text-decoration:none;
+  margin-left:6px;
+}
+
+/* MOBILE */
+
+@media(max-width:720px){
+
+  .nav-link{
+    display:none;
+  }
+
+  .nav-cta{
+    font-size:.82rem;
+    padding:8px 12px;
+  }
+
+  .hero{
+    padding-top:38px;
+  }
+
+  .card{
+    padding:20px 18px;
+  }
+
+  .footer-inner{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
-<header class="header">
-    <div class="header-inner">
-        <a href="/" class="logo">Chat<span>Core</span></a>
-    </div>
+<div class="page-bg"></div>
+
+<header class="nav">
+
+  <div class="nav-inner">
+
+    <a class="logo" href="/">
+
+      <img
+        src="chatcorelogo3.png"
+        class="nav-logo-img"
+        alt="ChatCore"
+      >
+
+      <span class="logo-word">
+        ChatCore
+      </span>
+
+    </a>
+
+    <nav class="nav-links">
+
+      <a class="nav-link" href="/">
+        Home
+      </a>
+
+      <a class="nav-link" href="privacy.html">
+        Privacy
+      </a>
+
+      <a
+        class="nav-cta"
+        href="mailto:info@chatcore.it"
+      >
+        <span class="dot"></span>
+        Contatti
+      </a>
+
+    </nav>
+
+  </div>
+
 </header>
+
+<div class="top-accent"></div>
+
 
 <main class="container">
 
-<h1>Termini e Condizioni d'Uso</h1>
+  <section class="hero">
 
-<div class="updated">
-    Ultimo aggiornamento: settembre 2026
-</div>
+    <h1>
+      Termini e Condizioni
+    </h1>
 
+    <p class="hero-sub">
+      Le condizioni che regolano l'utilizzo dei servizi ChatCore.
+    </p>
 
-<div class="card">
-<h2>1. Oggetto del servizio</h2>
+    <div class="updated">
+      Ultimo aggiornamento: settembre 2026
+    </div>
 
-<p>
-ChatCore è una piattaforma software per l'automazione della messaggistica e la gestione di funzionalità connesse.
-</p>
+  </section>
 
-<p>
-A seconda della configurazione, il servizio può comprendere comunicazioni automatiche, prenotazioni, appuntamenti, promemoria e integrazioni con servizi esterni.
-</p>
 
-<p>
-ChatCore può utilizzare API e servizi di terze parti, tra cui WhatsApp Business tramite le API ufficiali messe a disposizione da Meta/WhatsApp.
-</p>
-</div>
+  <section class="card">
 
+    <h2>
+      1. Oggetto del servizio
+    </h2>
 
-<div class="card">
-<h2>2. Titolare del servizio</h2>
+    <p>
+      ChatCore è una piattaforma software per l'automazione
+      della messaggistica e per la gestione di funzionalità
+      connesse alle comunicazioni e alle prenotazioni.
+    </p>
 
-<p>
-<strong>Giuseppe Lavanga</strong><br>
-P.IVA: 01628250522<br>
-Email:
-<a href="mailto:info@chatcore.it">info@chatcore.it</a>
-</p>
-</div>
+    <p>
+      A seconda della configurazione utilizzata, il servizio
+      può comprendere comunicazioni automatiche, prenotazioni,
+      appuntamenti, conferme, promemoria e integrazioni con
+      servizi esterni.
+    </p>
 
+    <p>
+      ChatCore può utilizzare API e servizi di terze parti,
+      tra cui WhatsApp Business tramite le API ufficiali
+      messe a disposizione da Meta/WhatsApp.
+    </p>
 
-<div class="card">
-<h2>3. Servizi di terze parti</h2>
+  </section>
 
-<p>
-Alcune funzionalità di ChatCore dipendono da servizi esterni.
-</p>
 
-<p>
-Il loro funzionamento è soggetto anche ai termini, alle condizioni e alle policy dei rispettivi fornitori.
-</p>
+  <section class="card">
 
-<p>
-Eventuali modifiche, sospensioni, limitazioni o interruzioni dei servizi di terze parti possono influire sulle funzionalità di ChatCore che ne dipendono.
-</p>
-</div>
+    <h2>
+      2. Titolare del servizio
+    </h2>
 
+    <p>
+      Il servizio ChatCore è gestito da:
+    </p>
 
-<div class="card">
-<h2>4. Nessuna affiliazione con Meta o WhatsApp</h2>
+    <p>
+      <strong>
+        Giuseppe Lavanga
+      </strong>
+      <br>
+      P.IVA: 01628250522
+      <br>
+      Email:
+      <a href="mailto:info@chatcore.it">
+        info@chatcore.it
+      </a>
+    </p>
 
-<p>
-ChatCore è un servizio indipendente e non è affiliato, sponsorizzato o approvato da Meta Platforms, Inc. o WhatsApp LLC, salvo eventuali indicazioni ufficiali espresse dai rispettivi titolari.
-</p>
-</div>
+  </section>
 
 
-<div class="card">
-<h2>5. Responsabilità del Cliente</h2>
+  <section class="card">
 
-<p>
-Il Cliente è responsabile dell'utilizzo del servizio e dei dati e contenuti che inserisce o trasmette tramite ChatCore.
-</p>
+    <h2>
+      3. Servizi di terze parti
+    </h2>
 
-<p>Il Cliente deve:</p>
+    <p>
+      Alcune funzionalità di ChatCore dipendono da servizi
+      esterni. Il loro utilizzo è soggetto anche ai termini,
+      alle condizioni e alle policy dei rispettivi fornitori.
+    </p>
 
-<ul>
-<li>utilizzare il servizio in modo lecito;</li>
-<li>avere una base giuridica adeguata per trattare i dati dei propri utenti;</li>
-<li>fornire agli utenti le informative necessarie;</li>
-<li>ottenere eventuali consensi richiesti dalla normativa;</li>
-<li>rispettare le policy di Meta/WhatsApp e degli altri servizi collegati;</li>
-<li>utilizzare ChatCore esclusivamente per finalità lecite.</li>
-</ul>
-</div>
+    <p>
+      Eventuali modifiche, sospensioni, limitazioni o
+      interruzioni dei servizi di terze parti possono influire
+      sulle funzionalità di ChatCore che ne dipendono.
+    </p>
 
+  </section>
 
-<div class="card">
-<h2>6. Dati personali</h2>
 
-<p>
-Il trattamento dei dati personali è descritto nella
-<a href="privacy.html">Privacy Policy di ChatCore</a>.
-</p>
+  <section class="card">
 
-<p>
-ChatCore può trattare, nell'ambito dell'erogazione del servizio, dati come numeri di telefono, identificativi tecnici e informazioni relative a prenotazioni e appuntamenti.
-</p>
+    <h2>
+      4. Nessuna affiliazione con Meta o WhatsApp
+    </h2>
 
-<p>
-<strong>ChatCore non conserva il contenuto dei messaggi WhatsApp come archivio delle conversazioni.</strong>
-</p>
+    <p>
+      ChatCore è un servizio indipendente e non è affiliato,
+      sponsorizzato o approvato da Meta Platforms, Inc. o
+      WhatsApp LLC, salvo eventuali indicazioni ufficiali
+      espresse dai rispettivi titolari.
+    </p>
 
-<p>
-Quando ChatCore tratta dati per conto del Cliente, il Cliente determina le finalità del trattamento e fornisce le istruzioni necessarie per l'erogazione del servizio.
-</p>
-</div>
+  </section>
 
 
-<div class="card">
-<h2>7. Utilizzo di WhatsApp</h2>
+  <section class="card">
 
-<p>
-Il Cliente che collega WhatsApp a ChatCore è responsabile del proprio account e del rispetto delle regole applicabili al suo utilizzo.
-</p>
+    <h2>
+      5. Responsabilità del Cliente
+    </h2>
 
-<p>
-ChatCore non controlla preventivamente ogni messaggio o contenuto creato dal Cliente.
-</p>
-</div>
+    <p>
+      Il Cliente è responsabile dell'utilizzo del servizio
+      e dei dati e contenuti che inserisce o trasmette
+      tramite ChatCore.
+    </p>
 
+    <p>
+      Il Cliente deve:
+    </p>
 
-<div class="card">
-<h2>8. Utilizzi vietati</h2>
+    <ul>
 
-<p>È vietato utilizzare ChatCore per:</p>
+      <li>
+        utilizzare il servizio in modo lecito;
+      </li>
 
-<ul>
-<li>inviare spam o comunicazioni non autorizzate;</li>
-<li>inviare contenuti illegali;</li>
-<li>molestare, minacciare o ingannare i destinatari;</li>
-<li>effettuare attività fraudolente;</li>
-<li>violare copyright o altri diritti di terzi;</li>
-<li>trattare dati personali in violazione della normativa applicabile;</li>
-<li>violare le policy dei servizi integrati.</li>
-</ul>
-</div>
+      <li>
+        avere una base giuridica adeguata per il trattamento
+        dei dati dei propri utenti;
+      </li>
 
+      <li>
+        fornire agli utenti le informative richieste;
+      </li>
 
-<div class="card">
-<h2>9. Sospensione del servizio</h2>
+      <li>
+        ottenere eventuali consensi richiesti dalla normativa;
+      </li>
 
-<p>
-In caso di uso illecito, abusivo o contrario ai presenti Termini, il servizio può essere sospeso o interrotto.
-</p>
+      <li>
+        rispettare le policy di Meta/WhatsApp e degli altri
+        servizi collegati;
+      </li>
 
-<p>
-La sospensione può avvenire senza preavviso quando necessario per motivi di sicurezza, per prevenire abusi o per rispettare obblighi di legge o richieste dei fornitori dei servizi integrati.
-</p>
-</div>
+      <li>
+        utilizzare ChatCore esclusivamente per finalità lecite.
+      </li>
 
+    </ul>
 
-<div class="card">
-<h2>10. Disponibilità del servizio</h2>
+  </section>
 
-<p>
-ChatCore viene fornito con l'obiettivo di garantire il corretto funzionamento del servizio, ma non viene garantita la disponibilità ininterrotta.
-</p>
 
-<p>
-Il servizio può essere temporaneamente indisponibile per manutenzione, problemi tecnici, problemi di rete, infrastruttura o servizi di terze parti.
-</p>
-</div>
+  <section class="card">
 
+    <h2>
+      6. Dati personali
+    </h2>
 
-<div class="card">
-<h2>11. Limitazione di responsabilità</h2>
+    <p>
+      Il trattamento dei dati personali è descritto nella
+      <a href="privacy.html">
+        Privacy Policy di ChatCore
+      </a>.
+    </p>
 
-<p>
-Nei limiti consentiti dalla legge, ChatCore non risponde di malfunzionamenti o interruzioni direttamente causati da servizi di terze parti, infrastrutture di rete, provider di hosting o altri sistemi esterni.
-</p>
+    <p>
+      Nell'ambito dell'erogazione del servizio, ChatCore può
+      trattare dati come numeri di telefono, identificativi
+      tecnici e informazioni relative a prenotazioni e
+      appuntamenti.
+    </p>
 
-<p>
-ChatCore non è responsabile dei contenuti creati o inviati dal Cliente né dell'utilizzo illecito effettuato dal Cliente.
-</p>
+    <p>
+      <strong>
+        ChatCore non conserva il contenuto dei messaggi WhatsApp
+        come archivio delle conversazioni.
+      </strong>
+    </p>
 
-<p>
-Restano ferme le responsabilità che non possono essere escluse o limitate dalla normativa applicabile.
-</p>
-</div>
+    <p>
+      Quando ChatCore tratta dati per conto del Cliente,
+      il Cliente determina le finalità del trattamento e
+      fornisce le istruzioni necessarie per l'erogazione
+      del servizio.
+    </p>
 
+  </section>
 
-<div class="card">
-<h2>12. Proprietà del software</h2>
 
-<p>
-Il software, il codice, l'interfaccia e gli elementi tecnici proprietari di ChatCore rimangono di proprietà del Titolare o dei rispettivi titolari dei diritti.
-</p>
+  <section class="card">
 
-<p>
-Il Cliente riceve esclusivamente il diritto di utilizzare il servizio secondo le funzionalità e le condizioni concordate.
-</p>
-</div>
+    <h2>
+      7. Utilizzo di WhatsApp
+    </h2>
 
+    <p>
+      Il Cliente che collega un account WhatsApp a ChatCore
+      è responsabile del proprio account e del rispetto
+      delle regole applicabili al suo utilizzo.
+    </p>
 
-<div class="card">
-<h2>13. Dati e contenuti del Cliente</h2>
+    <p>
+      ChatCore non controlla preventivamente ogni messaggio
+      o contenuto creato dal Cliente.
+    </p>
 
-<p>
-Il Cliente mantiene i propri diritti sui dati e sui contenuti che inserisce o trasmette tramite ChatCore.
-</p>
+  </section>
 
-<p>
-ChatCore utilizza tali dati nella misura necessaria a fornire le funzionalità richieste.
-</p>
 
-<p>
-ChatCore non vende i dati personali degli utenti del Cliente e non utilizza tali dati per proprie finalità pubblicitarie.
-</p>
-</div>
+  <section class="card">
 
+    <h2>
+      8. Utilizzi vietati
+    </h2>
 
-<div class="card">
-<h2>14. Modifiche al servizio</h2>
+    <p>
+      È vietato utilizzare ChatCore per:
+    </p>
 
-<p>
-Il Titolare può aggiornare o modificare ChatCore per motivi tecnici, di sicurezza, normativi o per adeguamenti ai servizi di terze parti.
-</p>
-</div>
+    <ul>
 
+      <li>
+        inviare spam o comunicazioni non autorizzate;
+      </li>
 
-<div class="card">
-<h2>15. Modifiche ai Termini</h2>
+      <li>
+        inviare contenuti illegali;
+      </li>
 
-<p>
-Il Titolare può aggiornare i presenti Termini.
-</p>
+      <li>
+        molestare, minacciare o ingannare i destinatari;
+      </li>
 
-<p>
-La versione aggiornata sarà pubblicata su questa pagina con la relativa data di ultimo aggiornamento.
-</p>
-</div>
+      <li>
+        effettuare attività fraudolente;
+      </li>
 
+      <li>
+        violare copyright o altri diritti di terzi;
+      </li>
 
-<div class="card">
-<h2>16. Legge applicabile</h2>
+      <li>
+        trattare dati personali in violazione della normativa
+        applicabile;
+      </li>
 
-<p>
-I presenti Termini sono disciplinati dalla legge italiana, salvo l'applicazione di eventuali disposizioni inderogabili previste dalla normativa applicabile.
-</p>
-</div>
+      <li>
+        violare le policy dei servizi integrati.
+      </li>
 
+    </ul>
 
-<div class="card">
-<h2>17. Contatti</h2>
+  </section>
 
-<p>
-<strong>Giuseppe Lavanga</strong><br>
-P.IVA: 01628250522<br>
-Email:
-<a href="mailto:info@chatcore.it">info@chatcore.it</a>
-</p>
 
-<p>
-<a href="privacy.html">← Leggi la Privacy Policy</a>
-</p>
-</div>
+  <section class="card">
+
+    <h2>
+      9. Sospensione del servizio
+    </h2>
+
+    <p>
+      In caso di uso illecito, abusivo o contrario ai presenti
+      Termini, ChatCore può sospendere o interrompere il servizio.
+    </p>
+
+    <p>
+      La sospensione può avvenire senza preavviso quando
+      necessario per motivi di sicurezza, per prevenire abusi
+      oppure per rispettare obblighi di legge o richieste
+      dei fornitori dei servizi integrati.
+    </p>
+
+  </section>
+
+
+  <section class="card">
+
+    <h2>
+      10. Disponibilità del servizio
+    </h2>
+
+    <p>
+      ChatCore viene fornito con l'obiettivo di garantire
+      il corretto funzionamento del servizio, ma non viene
+      garantita la disponibilità ininterrotta.
+    </p>
+
+    <p>
+      Il servizio può essere temporaneamente indisponibile
+      per manutenzione, problemi tecnici, problemi di rete,
+      infrastruttura o servizi di terze parti.
+    </p>
+
+  </section>
+
+
+  <section class="card">
+
+    <h2>
+      11. Limitazione di responsabilità
+    </h2>
+
+    <p>
+      Nei limiti consentiti dalla legge, ChatCore non risponde
+      di malfunzionamenti o interruzioni direttamente causati
+      da servizi di terze parti, infrastrutture di rete,
+      provider di hosting o altri sistemi esterni.
+    </p>
+
+    <p>
+      ChatCore non è responsabile dei contenuti creati o
+      inviati dal Cliente né dell'utilizzo illecito effettuato
+      dal Cliente.
+    </p>
+
+    <p>
+      Restano ferme le responsabilità che non possono essere
+      escluse o limitate dalla normativa applicabile.
+    </p>
+
+  </section>
+
+
+  <section class="card">
+
+    <h2>
+      12. Proprietà del software
+    </h2>
+
+    <p>
+      Il software, il codice, l'interfaccia e gli elementi
+      tecnici proprietari di ChatCore rimangono di proprietà
+      del Titolare o dei rispettivi titolari dei diritti.
+    </p>
+
+    <p>
+      Il Cliente riceve esclusivamente il diritto di utilizzare
+      il servizio secondo le funzionalità e le condizioni
+      concordate.
+    </p>
+
+  </section>
+
+
+  <section class="card">
+
+    <h2>
+      13. Dati e contenuti del Cliente
+    </h2>
+
+    <p>
+      Il Cliente mantiene i propri diritti sui dati e sui
+      contenuti che inserisce o trasmette tramite ChatCore.
+    </p>
+
+    <p>
+      ChatCore utilizza tali dati nella misura necessaria
+      a fornire le funzionalità richieste.
+    </p>
+
+    <p>
+      ChatCore non vende i dati personali degli utenti del
+      Cliente e non utilizza tali dati per proprie finalità
+      pubblicitarie.
+    </p>
+
+  </section>
+
+
+  <section class="card">
+
+    <h2>
+      14. Modifiche al servizio
+    </h2>
+
+    <p>
+      Il Titolare può aggiornare o modificare ChatCore per
+      motivi tecnici, di sicurezza, normativi o per adeguamenti
+      ai servizi di terze parti.
+    </p>
+
+  </section>
+
+
+  <section class="card">
+
+    <h2>
+      15. Modifiche ai Termini
+    </h2>
+
+    <p>
+      Il Titolare può aggiornare i presenti Termini.
+      La versione aggiornata sarà pubblicata su questa pagina
+      con la relativa data di ultimo aggiornamento.
+    </p>
+
+  </section>
+
+
+  <section class="card">
+
+    <h2>
+      16. Legge applicabile
+    </h2>
+
+    <p>
+      I presenti Termini sono disciplinati dalla legge italiana,
+      salvo l'applicazione di eventuali disposizioni inderogabili
+      previste dalla normativa applicabile.
+    </p>
+
+  </section>
+
+
+  <section class="card">
+
+    <h2>
+      17. Contatti
+    </h2>
+
+    <p>
+      <strong>
+        Giuseppe Lavanga
+      </strong>
+      <br>
+      P.IVA: 01628250522
+      <br>
+      Email:
+      <a href="mailto:info@chatcore.it">
+        info@chatcore.it
+      </a>
+    </p>
+
+    <p>
+      <a href="privacy.html">
+        ← Vai alla Privacy Policy
+      </a>
+    </p>
+
+  </section>
 
 </main>
 
+
 <footer class="footer">
-© 2026 ChatCore
+
+  <div class="footer-inner">
+
+    <div class="footer-left">
+
+      <img
+        src="chatcorelogo3.png"
+        class="footer-mini-logo"
+        alt="ChatCore"
+      >
+
+      <strong>
+        ChatCore
+      </strong>
+
+    </div>
+
+    <div class="footer-links">
+
+      © 2026 ChatCore ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="terms.html">Termini</a>
+
+    </div>
+
+  </div>
+
 </footer>
 
 </body>
