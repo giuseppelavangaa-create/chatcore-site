@@ -3,334 +3,729 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy | ChatCore</title>
+<title>ChatCore — Privacy Policy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
-* {
-    box-sizing: border-box;
+:root{
+  --bg:#070910;
+  --bg-soft:#0d1019;
+  --panel:#101321;
+  --panel-soft:#111623;
+  --muted:#9ea7c0;
+  --line:#1d2234;
+  --acc-1:#25d366;
+  --acc-2:#0ea5ff;
+  --acc-3:#8b5cf6;
+  --radius-lg:20px;
+  --radius-md:16px;
+  --radius-sm:12px;
+  --shadow-soft:0 14px 40px rgba(0,0,0,.55);
 }
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f7f9fc;
-    color: #1b1f24;
-    line-height: 1.7;
+*{
+  box-sizing:border-box;
 }
 
-.header {
-    background: #111827;
-    padding: 28px 20px;
+html{
+  scroll-behavior:smooth;
 }
 
-.header-inner {
-    max-width: 900px;
-    margin: auto;
+body{
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:#e5e9f7;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  line-height:1.7;
+  overflow-x:hidden;
 }
 
-.logo {
-    color: white;
-    font-size: 27px;
-    font-weight: 800;
-    text-decoration: none;
+.page-bg{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at top left,rgba(14,165,255,.12),transparent 55%),
+    radial-gradient(circle at top right,rgba(37,211,102,.10),transparent 55%),
+    radial-gradient(circle at bottom,rgba(139,92,246,.12),transparent 60%),
+    var(--bg);
+  background-repeat:no-repeat;
+  background-size:cover;
 }
 
-.logo span {
-    color: #25D366;
+/* NAVBAR */
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(14px);
+  background:linear-gradient(
+    to bottom,
+    rgba(7,9,16,.94),
+    rgba(7,9,16,.75)
+  );
+  border-bottom:1px solid rgba(34,41,66,.95);
 }
 
-.container {
-    max-width: 900px;
-    margin: 45px auto;
-    padding: 0 20px 60px;
+.nav-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+  gap:16px;
 }
 
-.card {
-    background: white;
-    border-radius: 14px;
-    padding: 30px;
-    margin-bottom: 20px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
 }
 
-h1 {
-    font-size: 36px;
-    margin-bottom: 8px;
+.nav-logo-img{
+  height:58px;
+  width:auto;
+  border-radius:10px;
 }
 
-h2 {
-    font-size: 21px;
-    margin-top: 0;
-    color: #111827;
+.logo-word{
+  font-family:Montserrat,Inter,sans-serif;
+  font-size:1.35rem;
+  font-weight:800;
+  letter-spacing:.3px;
+  background:linear-gradient(
+    90deg,
+    #0ea5ff 0%,
+    #25d366 100%
+  );
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
-p, li {
-    color: #4b5563;
+.nav-links{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
-a {
-    color: #16a34a;
-    text-decoration: none;
+.nav-link{
+  padding:8px 12px;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:.92rem;
+  font-weight:600;
+  color:#dbe4ff;
+  transition:.2s;
 }
 
-a:hover {
-    text-decoration: underline;
+.nav-link:hover{
+  background:rgba(21,26,46,.85);
 }
 
-.updated {
-    color: #6b7280;
-    margin-bottom: 35px;
+.nav-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 16px;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:.94rem;
+  font-weight:700;
+  background:linear-gradient(
+    90deg,
+    var(--acc-2),
+    var(--acc-1)
+  );
+  color:#04110a;
+  box-shadow:
+    0 12px 32px rgba(37,211,102,.25),
+    0 10px 28px rgba(14,165,255,.16);
 }
 
-.footer {
-    text-align: center;
-    color: #6b7280;
-    font-size: 14px;
-    padding: 30px 20px;
+.nav-cta .dot{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:#0b3017;
+}
+
+/* TOP */
+
+.top-accent{
+  height:2px;
+  background:linear-gradient(
+    90deg,
+    var(--acc-2),
+    var(--acc-3),
+    var(--acc-1)
+  );
+}
+
+/* CONTENT */
+
+.container{
+  max-width:1000px;
+  margin:0 auto;
+  padding:0 18px;
+}
+
+.hero{
+  padding:58px 0 34px;
+}
+
+.hero h1{
+  font-family:Montserrat,Inter,sans-serif;
+  font-size:clamp(2.2rem,4vw,3.35rem);
+  line-height:1.08;
+  letter-spacing:.02em;
+  margin:0 0 12px;
+  background:linear-gradient(
+    110deg,
+    #f9fafb 0%,
+    #e5ecff 40%,
+    #a5f3fc 100%
+  );
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero-sub{
+  color:var(--muted);
+  margin:0;
+  max-width:760px;
+}
+
+.updated{
+  color:var(--muted);
+  font-size:.9rem;
+  margin-top:10px;
+}
+
+/* CARDS */
+
+.card{
+  border-radius:var(--radius-md);
+  border:1px solid rgba(34,43,74,.95);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15,23,42,.95),
+      rgba(9,12,25,.98)
+    );
+  padding:24px 22px;
+  margin:18px 0;
+  box-shadow:0 10px 26px rgba(0,0,0,.55);
+}
+
+.card h2{
+  font-family:Montserrat,Inter,sans-serif;
+  font-size:1.2rem;
+  margin:0 0 9px;
+  color:#e5e9f7;
+}
+
+.card p,
+.card li{
+  color:#b7c0d7;
+}
+
+.card strong{
+  color:#e5e9f7;
+}
+
+.card a{
+  color:#93c5fd;
+  text-decoration:none;
+}
+
+.card a:hover{
+  text-decoration:underline;
+}
+
+.card ul{
+  padding-left:22px;
+}
+
+/* FOOTER */
+
+.footer{
+  border-top:1px solid var(--line);
+  padding:20px 0 30px;
+  margin-top:42px;
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(15,23,42,.8),
+      rgba(3,6,18,.98)
+    );
+}
+
+.footer-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+  font-size:.86rem;
+  color:var(--muted);
+}
+
+.footer-left{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.footer-mini-logo{
+  width:32px;
+  height:32px;
+}
+
+.footer-links a{
+  color:#93c5fd;
+  text-decoration:none;
+  margin-left:6px;
+}
+
+/* WHATSAPP */
+
+.wa-float{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:40;
+}
+
+.wa-float a{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:var(--acc-1);
+  color:#022c16;
+  font-size:.9rem;
+  font-weight:800;
+  text-decoration:none;
+  box-shadow:0 10px 26px rgba(16,185,129,.45);
+}
+
+/* MOBILE */
+
+@media(max-width:720px){
+
+  .nav-link{
+    display:none;
+  }
+
+  .nav-cta{
+    font-size:.82rem;
+    padding:8px 12px;
+  }
+
+  .hero{
+    padding-top:38px;
+  }
+
+  .card{
+    padding:20px 18px;
+  }
+
+  .footer-inner{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
+
+@media(max-width:520px){
+
+  .wa-float a .text{
+    display:none;
+  }
+
+  .wa-float a{
+    padding-inline:12px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header class="header">
-    <div class="header-inner">
-        <a href="/" class="logo">Chat<span>Core</span></a>
-    </div>
+<div class="page-bg"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+
+    <a class="logo" href="/">
+      <img
+        src="chatcorelogo3.png"
+        class="nav-logo-img"
+        alt="ChatCore"
+      >
+      <span class="logo-word">ChatCore</span>
+    </a>
+
+    <nav class="nav-links">
+
+      <a class="nav-link" href="/">
+        Home
+      </a>
+
+      <a class="nav-link" href="terms.html">
+        Termini
+      </a>
+
+      <a
+        class="nav-cta"
+        href="mailto:info@chatcore.it"
+      >
+        <span class="dot"></span>
+        Contatti
+      </a>
+
+    </nav>
+
+  </div>
 </header>
+
+<div class="top-accent"></div>
 
 <main class="container">
 
-<h1>Informativa Privacy</h1>
+  <section class="hero">
 
-<div class="updated">
-    Ultimo aggiornamento: settembre 2026
-</div>
+    <h1>Privacy Policy</h1>
 
-<div class="card">
-<h2>1. Titolare del trattamento</h2>
+    <p class="hero-sub">
+      Come ChatCore tratta e protegge i dati personali
+      nell'ambito dei propri servizi.
+    </p>
 
-<p>
-Il Titolare del trattamento, per i trattamenti effettuati direttamente da ChatCore per le proprie finalità, è:
-</p>
+    <div class="updated">
+      Ultimo aggiornamento: settembre 2026
+    </div>
 
-<p>
-<strong>Giuseppe Lavanga</strong><br>
-P.IVA: 01628250522<br>
-Email: <a href="mailto:info@chatcore.it">info@chatcore.it</a>
-</p>
-</div>
+  </section>
 
 
-<div class="card">
-<h2>2. Quali dati vengono trattati</h2>
+  <section class="card">
 
-<p>
-Nell'ambito del servizio ChatCore possono essere trattati, in base alle funzionalità utilizzate:
-</p>
+    <h2>1. Titolare del trattamento</h2>
 
-<ul>
-<li>numero di telefono dell'utente;</li>
-<li>identificativi tecnici relativi all'utente, alla conversazione o al servizio;</li>
-<li>dati relativi a prenotazioni e appuntamenti;</li>
-<li>dati tecnici necessari al funzionamento e alla sicurezza della piattaforma.</li>
-</ul>
+    <p>
+      Il Titolare del trattamento, per i trattamenti effettuati
+      direttamente da ChatCore per le proprie finalità, è:
+    </p>
 
-<p>
-<strong>ChatCore non conserva il contenuto dei messaggi WhatsApp come storico delle conversazioni.</strong>
-</p>
+    <p>
+      <strong>Giuseppe Lavanga</strong><br>
+      P.IVA: 01628250522<br>
+      Email:
+      <a href="mailto:info@chatcore.it">
+        info@chatcore.it
+      </a>
+    </p>
 
-<p>
-I messaggi possono essere elaborati tecnicamente dal sistema per consentire il funzionamento delle automazioni, ma il loro contenuto non viene conservato come archivio permanente delle conversazioni.
-</p>
-</div>
+  </section>
 
 
-<div class="card">
-<h2>3. Dati ricevuti tramite WhatsApp</h2>
+  <section class="card">
 
-<p>
-Quando un'attività utilizza ChatCore tramite WhatsApp, il sistema può ricevere attraverso le API ufficiali di Meta/WhatsApp le informazioni necessarie per identificare l'utente e fornire il servizio.
-</p>
+    <h2>2. Quali dati vengono trattati</h2>
 
-<p>
-Tali informazioni possono comprendere il numero di telefono e identificativi tecnici associati all'utente o alla conversazione.
-</p>
+    <p>
+      Nell'ambito del servizio ChatCore possono essere trattati,
+      in base alle funzionalità utilizzate:
+    </p>
 
-<p>
-ChatCore può inoltre trattare le informazioni necessarie alla gestione di prenotazioni e appuntamenti effettuati tramite il servizio.
-</p>
+    <ul>
+      <li>numero di telefono dell'utente;</li>
+      <li>identificativi tecnici relativi all'utente, alla conversazione o al servizio;</li>
+      <li>dati relativi a prenotazioni e appuntamenti;</li>
+      <li>dati tecnici necessari al funzionamento e alla sicurezza della piattaforma.</li>
+    </ul>
 
-<p>
-Quando questi dati vengono trattati da ChatCore per conto di un Cliente, il Cliente determina le finalità del trattamento e fornisce a ChatCore le istruzioni necessarie per l'erogazione del servizio.
-</p>
-</div>
+    <p>
+      <strong>
+        ChatCore non conserva il contenuto dei messaggi WhatsApp
+        come storico delle conversazioni.
+      </strong>
+    </p>
 
+    <p>
+      I messaggi possono essere elaborati tecnicamente dal sistema
+      per consentire il funzionamento delle automazioni, ma il loro
+      contenuto non viene conservato come archivio permanente delle
+      conversazioni.
+    </p>
 
-<div class="card">
-<h2>4. Finalità del trattamento</h2>
-
-<p>I dati possono essere trattati per:</p>
-
-<ul>
-<li>fornire e mantenere il servizio ChatCore;</li>
-<li>gestire le comunicazioni automatiche;</li>
-<li>identificare gli utenti che interagiscono con il servizio;</li>
-<li>gestire prenotazioni e appuntamenti;</li>
-<li>inviare conferme e promemoria;</li>
-<li>fornire assistenza tecnica;</li>
-<li>garantire sicurezza, manutenzione e corretto funzionamento della piattaforma;</li>
-<li>adempiere agli obblighi di legge, quando applicabili.</li>
-</ul>
-
-<p>
-ChatCore non utilizza i dati personali degli utenti per proprie finalità di marketing o profilazione.
-</p>
-</div>
+  </section>
 
 
-<div class="card">
-<h2>5. Base giuridica</h2>
+  <section class="card">
 
-<p>
-A seconda della specifica attività, il trattamento può essere basato sull'esecuzione di un contratto o di misure precontrattuali, sull'adempimento di obblighi di legge, sul legittimo interesse per le attività necessarie alla sicurezza e al funzionamento del servizio oppure sul consenso, quando richiesto dalla normativa applicabile.
-</p>
+    <h2>3. Dati ricevuti tramite WhatsApp</h2>
 
-<p>
-Per i dati trattati da ChatCore per conto dei propri Clienti, il Cliente è responsabile dell'individuazione della base giuridica relativa alle proprie finalità di trattamento.
-</p>
-</div>
+    <p>
+      Quando un'attività utilizza ChatCore tramite WhatsApp,
+      il sistema può ricevere attraverso le API ufficiali di
+      Meta/WhatsApp le informazioni necessarie per identificare
+      l'utente e fornire il servizio.
+    </p>
 
+    <p>
+      Tali informazioni possono comprendere il numero di telefono
+      e identificativi tecnici associati all'utente o alla
+      conversazione.
+    </p>
 
-<div class="card">
-<h2>6. Conservazione dei dati</h2>
+    <p>
+      ChatCore può inoltre trattare le informazioni necessarie
+      alla gestione di prenotazioni e appuntamenti effettuati
+      tramite il servizio.
+    </p>
 
-<p>
-I dati personali necessari all'erogazione del servizio, inclusi numeri di telefono, identificativi tecnici e dati relativi alle prenotazioni, vengono conservati per la durata del rapporto con il Cliente, nella misura necessaria al funzionamento delle relative funzionalità.
-</p>
+    <p>
+      Quando questi dati vengono trattati da ChatCore per conto
+      di un Cliente, il Cliente determina le finalità del trattamento
+      e fornisce a ChatCore le istruzioni necessarie per l'erogazione
+      del servizio.
+    </p>
 
-<p>
-Il contenuto dei messaggi WhatsApp non viene conservato come storico delle conversazioni.
-</p>
-
-<p>
-Al termine del rapporto con il Cliente, i dati associati al servizio vengono cancellati entro un periodo di tempo ragionevole, salvo quelli che devono essere conservati per obblighi di legge, per esercitare o difendere un diritto o per altre finalità previste dalla normativa applicabile.
-</p>
-
-<p>
-Per i dati trattati per conto del Cliente, la conservazione avviene anche secondo le istruzioni del Cliente.
-</p>
-</div>
-
-
-<div class="card">
-<h2>7. Fornitori e destinatari dei dati</h2>
-
-<p>
-Per fornire il servizio, ChatCore può utilizzare fornitori tecnici necessari all'hosting, all'infrastruttura informatica, alla sicurezza e al funzionamento della piattaforma.
-</p>
-
-<p>
-Tra questi rientra <strong>Hetzner Online GmbH</strong>, utilizzata per l'infrastruttura server sulla quale vengono eseguiti il software e il database di ChatCore.
-</p>
-
-<p>
-Quando il Cliente utilizza WhatsApp, possono inoltre essere coinvolti i servizi di Meta/WhatsApp secondo le relative condizioni e informative.
-</p>
-</div>
+  </section>
 
 
-<div class="card">
-<h2>8. Trasferimento dei dati</h2>
+  <section class="card">
 
-<p>
-Qualora l'utilizzo di un fornitore comporti un trasferimento di dati personali al di fuori dello Spazio Economico Europeo, il trasferimento viene effettuato sulla base degli strumenti previsti dalla normativa applicabile, quando necessari.
-</p>
-</div>
+    <h2>4. Finalità del trattamento</h2>
 
+    <p>
+      I dati possono essere trattati per:
+    </p>
 
-<div class="card">
-<h2>9. Sicurezza</h2>
+    <ul>
+      <li>fornire e mantenere il servizio ChatCore;</li>
+      <li>gestire le comunicazioni automatiche;</li>
+      <li>identificare gli utenti che interagiscono con il servizio;</li>
+      <li>gestire prenotazioni e appuntamenti;</li>
+      <li>inviare conferme e promemoria;</li>
+      <li>fornire assistenza tecnica;</li>
+      <li>garantire sicurezza, manutenzione e corretto funzionamento della piattaforma;</li>
+      <li>adempiere agli obblighi di legge, quando applicabili.</li>
+    </ul>
 
-<p>
-ChatCore adotta misure tecniche e organizzative adeguate e ragionevoli per proteggere i dati personali da accessi non autorizzati, perdita, alterazione o divulgazione non autorizzata.
-</p>
-</div>
+    <p>
+      ChatCore non utilizza i dati personali degli utenti
+      per proprie finalità di marketing o profilazione.
+    </p>
 
-
-<div class="card">
-<h2>10. Diritti dell'interessato</h2>
-
-<p>
-Nei casi previsti dalla normativa, l'interessato può chiedere:
-</p>
-
-<ul>
-<li>l'accesso ai propri dati personali;</li>
-<li>la rettifica dei dati inesatti;</li>
-<li>la cancellazione dei dati;</li>
-<li>la limitazione del trattamento;</li>
-<li>l'opposizione al trattamento;</li>
-<li>la portabilità dei dati, quando applicabile;</li>
-<li>la revoca del consenso, quando il trattamento è basato sul consenso.</li>
-</ul>
-
-<p>
-L'interessato può inoltre proporre reclamo al Garante per la protezione dei dati personali o all'autorità di controllo competente.
-</p>
-
-<p>
-Per esercitare i propri diritti è possibile scrivere a:
-<a href="mailto:info@chatcore.it">info@chatcore.it</a>
-</p>
-
-<p>
-Quando ChatCore tratta dati per conto di un Cliente, la richiesta può essere indirizzata anche al Cliente che utilizza il servizio.
-</p>
-</div>
+  </section>
 
 
-<div class="card">
-<h2>11. Minori</h2>
+  <section class="card">
 
-<p>
-ChatCore non è un servizio rivolto specificamente ai minori. L'utilizzo del servizio deve avvenire nel rispetto della normativa applicabile in materia di protezione dei dati dei minori.
-</p>
-</div>
+    <h2>5. Base giuridica</h2>
+
+    <p>
+      A seconda della specifica attività, il trattamento può essere
+      basato sull'esecuzione di un contratto o di misure precontrattuali,
+      sull'adempimento di obblighi di legge, sul legittimo interesse
+      per le attività necessarie alla sicurezza e al funzionamento
+      del servizio oppure sul consenso, quando richiesto dalla
+      normativa applicabile.
+    </p>
+
+    <p>
+      Per i dati trattati da ChatCore per conto dei propri Clienti,
+      il Cliente è responsabile dell'individuazione della base
+      giuridica relativa alle proprie finalità di trattamento.
+    </p>
+
+  </section>
 
 
-<div class="card">
-<h2>12. Modifiche alla Privacy Policy</h2>
+  <section class="card">
 
-<p>
-La presente informativa può essere aggiornata in caso di modifiche al servizio, ai trattamenti effettuati o alla normativa applicabile.
-</p>
+    <h2>6. Conservazione dei dati</h2>
 
-<p>
-La versione aggiornata viene pubblicata su questa pagina con la relativa data di aggiornamento.
-</p>
-</div>
+    <p>
+      I dati personali necessari all'erogazione del servizio,
+      inclusi numeri di telefono, identificativi tecnici e dati
+      relativi alle prenotazioni, vengono conservati per la durata
+      del rapporto con il Cliente, nella misura necessaria al
+      funzionamento delle relative funzionalità.
+    </p>
+
+    <p>
+      Il contenuto dei messaggi WhatsApp non viene conservato
+      come storico delle conversazioni.
+    </p>
+
+    <p>
+      Al termine del rapporto con il Cliente, i dati associati
+      al servizio vengono cancellati entro un periodo di tempo
+      ragionevole, salvo quelli che devono essere conservati
+      per obblighi di legge, per esercitare o difendere un diritto
+      o per altre finalità previste dalla normativa applicabile.
+    </p>
+
+  </section>
 
 
-<div class="card">
-<h2>13. Contatti</h2>
+  <section class="card">
 
-<p>
-<strong>Giuseppe Lavanga</strong><br>
-P.IVA: 01628250522<br>
-Email:
-<a href="mailto:info@chatcore.it">info@chatcore.it</a>
-</p>
+    <h2>7. Fornitori e destinatari dei dati</h2>
 
-<p>
-<a href="terms.html">Leggi i Termini e Condizioni d'Uso →</a>
-</p>
-</div>
+    <p>
+      Per fornire il servizio, ChatCore può utilizzare fornitori
+      tecnici necessari all'hosting, all'infrastruttura informatica,
+      alla sicurezza e al funzionamento della piattaforma.
+    </p>
+
+    <p>
+      Tra questi rientra
+      <strong>Hetzner Online GmbH</strong>,
+      utilizzata per l'infrastruttura server sulla quale vengono
+      eseguiti il software e il database di ChatCore.
+    </p>
+
+    <p>
+      Quando il Cliente utilizza WhatsApp, possono inoltre essere
+      coinvolti i servizi di Meta/WhatsApp secondo le relative
+      condizioni e informative.
+    </p>
+
+  </section>
+
+
+  <section class="card">
+
+    <h2>8. Sicurezza</h2>
+
+    <p>
+      ChatCore adotta misure tecniche e organizzative adeguate
+      e ragionevoli per proteggere i dati personali da accessi
+      non autorizzati, perdita, alterazione o divulgazione
+      non autorizzata.
+    </p>
+
+  </section>
+
+
+  <section class="card">
+
+    <h2>9. Diritti dell'interessato</h2>
+
+    <p>
+      Nei casi previsti dalla normativa, l'interessato può chiedere:
+    </p>
+
+    <ul>
+      <li>l'accesso ai propri dati personali;</li>
+      <li>la rettifica dei dati inesatti;</li>
+      <li>la cancellazione dei dati;</li>
+      <li>la limitazione del trattamento;</li>
+      <li>l'opposizione al trattamento;</li>
+      <li>la portabilità dei dati, quando applicabile;</li>
+      <li>la revoca del consenso, quando il trattamento è basato sul consenso.</li>
+    </ul>
+
+    <p>
+      L'interessato può inoltre proporre reclamo al Garante
+      per la protezione dei dati personali o all'autorità
+      di controllo competente.
+    </p>
+
+    <p>
+      Per esercitare i propri diritti è possibile scrivere a:
+      <a href="mailto:info@chatcore.it">
+        info@chatcore.it
+      </a>
+    </p>
+
+  </section>
+
+
+  <section class="card">
+
+    <h2>10. Modifiche alla Privacy Policy</h2>
+
+    <p>
+      La presente informativa può essere aggiornata in caso di
+      modifiche al servizio, ai trattamenti effettuati o alla
+      normativa applicabile.
+    </p>
+
+    <p>
+      La versione aggiornata viene pubblicata su questa pagina
+      con la relativa data di aggiornamento.
+    </p>
+
+  </section>
+
+
+  <section class="card">
+
+    <h2>11. Contatti</h2>
+
+    <p>
+      <strong>Giuseppe Lavanga</strong><br>
+      P.IVA: 01628250522<br>
+      Email:
+      <a href="mailto:info@chatcore.it">
+        info@chatcore.it
+      </a>
+    </p>
+
+    <p>
+      <a href="terms.html">
+        Vai ai Termini e Condizioni d'Uso →
+      </a>
+    </p>
+
+  </section>
 
 </main>
 
+
 <footer class="footer">
-© 2026 ChatCore
+
+  <div class="footer-inner">
+
+    <div class="footer-left">
+
+      <img
+        src="chatcorelogo3.png"
+        class="footer-mini-logo"
+        alt="ChatCore"
+      >
+
+      <strong>ChatCore</strong>
+
+    </div>
+
+    <div class="footer-links">
+
+      © 2026 ChatCore ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="terms.html">Termini</a>
+
+    </div>
+
+  </div>
+
 </footer>
 
 </body>
