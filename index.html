@@ -3,7 +3,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ChatCore — Automatizza risposte e prenotazioni su WhatsApp</title>
-  <meta name="description" content="ChatCore è l’assistente WhatsApp per attività locali: risponde ai clienti, gestisce richieste e raccoglie prenotazioni in automatico dal tuo numero WhatsApp." />
+  <meta name="description" content="ChatCore è l’assistente WhatsApp per attività locali: risponde ai clienti, gestisce richieste e raccoglie prenotazioni in automatico dal tuo numero WhatsApp Business." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,9 +17,9 @@
       --panel-soft: #111623;
       --muted: #9ea7c0;
       --line: #1d2234;
-      --acc-1: #25d366; /* WhatsApp green */
-      --acc-2: #0ea5ff; /* electric blue */
-      --acc-3: #8b5cf6; /* violet */
+      --acc-1: #25d366;
+      --acc-2: #0ea5ff;
+      --acc-3: #8b5cf6;
       --radius-lg: 20px;
       --radius-md: 16px;
       --radius-sm: 12px;
@@ -37,20 +37,13 @@
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-
-    body {
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg);   /* solo colore pieno sotto */
+      background-color: var(--bg);
       color: #e5e9f7;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* livello di sfondo continuo per tutta la pagina */
     .page-bg {
       position: fixed;
       inset: 0;
@@ -61,12 +54,9 @@
         radial-gradient(circle at top right, rgba(37,211,102,0.10), transparent 55%),
         radial-gradient(circle at bottom, rgba(139,92,246,0.12), transparent 60%),
         var(--bg);
-      background-repeat: no-repeat;  /* 👉 niente ripetizione */
-      background-size: cover;        /* 👉 copre tutto */
+      background-repeat: no-repeat;
+      background-size: cover;
     }
-
-
-    /* ===== Global layout ===== */
 
     .container {
       max-width: 1200px;
@@ -110,20 +100,22 @@
       color: #c2c9dd;
       max-width: 700px;
     }
-    /* ===== PRELOADER ATOMICO — VERSIONE INGRANDITA ===== */
+
+    /* ===== PRELOADER ===== */
 
     .preloader-overlay {
       position: fixed;
       inset: 0;
       z-index: 999;
-      background: radial-gradient(circle at top, rgba(14,165,255,0.18), transparent 55%),
-                  radial-gradient(circle at bottom, rgba(37,211,102,0.18), transparent 60%),
-                  #02030a;
+      background:
+        radial-gradient(circle at top, rgba(14,165,255,0.18), transparent 55%),
+        radial-gradient(circle at bottom, rgba(37,211,102,0.18), transparent 60%),
+        #02030a;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 28px; /* leggermente più aria */
+      gap: 28px;
       transition: opacity 0.7s ease, visibility 0.7s ease;
     }
 
@@ -133,24 +125,21 @@
       pointer-events: none;
     }
 
-    /* ===== ATOMO INGRANDITO ===== */
-
     .loader-atom {
       position: relative;
-      width: 300px;   /* PRIMA era 150 */
-      height: 300px;  /* PRIMA era 150 */
+      width: 300px;
+      height: 300px;
       border-radius: 999px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    /* CORE (centro) INGRANDITO */
     .loader-core {
       position: relative;
       z-index: 2;
-      width: 150px;   /* PRIMA 78 */
-      height: 150px;  /* PRIMA 78 */
+      width: 150px;
+      height: 150px;
       border-radius: 999px;
       background: radial-gradient(circle at top, rgba(255,255,255,0.15), transparent 60%);
       display: flex;
@@ -158,20 +147,17 @@
       justify-content: center;
     }
 
-    /* Logo più grande */
     .loader-core img {
-      max-width: 140px; /* PRIMA 70 */
+      max-width: 140px;
       max-height: 140px;
       display: block;
     }
-
-    /* ===== ORBITE INGRANDITE ===== */
 
     .loader-orbit {
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      border: 4px solid rgba(148,163,253,0.5); /* più spesse */
+      border: 4px solid rgba(148,163,253,0.5);
       box-shadow: 0 0 20px rgba(129,140,248,0.6);
       transform-origin: 50% 50%;
     }
@@ -179,10 +165,10 @@
     .loader-orbit::before {
       content: "";
       position: absolute;
-      top: -10px;     /* PRIMA -6 */
+      top: -10px;
       left: 50%;
-      width: 18px;    /* PRIMA 10 */
-      height: 18px;   /* PRIMA 10 */
+      width: 18px;
+      height: 18px;
       margin-left: -9px;
       border-radius: 999px;
       background: radial-gradient(circle, #e0f2fe, #0ea5ff);
@@ -233,14 +219,12 @@
       to   { transform: rotate(480deg) skewX(18deg); }
     }
 
-    /* Testo */
     .loader-text {
-      font-size: 1.2rem; /* leggermente più grande */
+      font-size: 1.2rem;
       color: var(--muted);
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
-
 
     /* ===== NAVBAR ===== */
 
@@ -262,26 +246,36 @@
       gap: 16px;
     }
 
-    .chatcore-logo {
+    .logo {
       display: flex;
       align-items: center;
       gap: 12px;
       text-decoration: none;
-      color: #fff;
     }
 
-    .logo-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 14px;
-      background: conic-gradient(from 210deg, var(--acc-2), var(--acc-3), var(--acc-1));
-      box-shadow: 0 8px 22px rgba(14,165,255,0.30), 0 2px 8px rgba(37,211,102,0.25);
+    .nav-logo-img {
+      height: 58px;
+      width: auto;
+      border-radius: 10px;
+      image-rendering: auto;
     }
 
-    .logo-text {
-      font-size: 1.14rem;
+    .logo-word {
+      font-family: "Montserrat", Inter, sans-serif;
+      font-size: 1.35rem;
       font-weight: 800;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(90deg, #0ea5ff 0%, #25d366 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .core-accent {
+      background: linear-gradient(90deg, #0ea5ff 0%, #25d366 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .nav-links {
@@ -313,7 +307,7 @@
       background: linear-gradient(90deg, var(--acc-2), var(--acc-1));
       color: #031009;
       font-weight: 700;
-      font-size: 0.94rem;
+      font-size: 0.98rem;
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -328,21 +322,19 @@
       background: #0b3017;
     }
 
-    /* Mobile nav */
     .nav-toggle {
       margin-left: auto;
       cursor: pointer;
       width: 26px;
       height: 26px;
       border-radius: 8px;
-      border: none;          /* se vuoi solo le 3 linee senza bordino */
+      border: none;
       background: transparent;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 0;
     }
-
 
     .nav-toggle span,
     .nav-toggle span::before,
@@ -371,72 +363,25 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: 52px;
+      top: 82px;
       padding: 10px 18px 12px;
       background: rgba(7,9,16,0.97);
       border-bottom: 1px solid var(--line);
+      flex-direction: column;
+      align-items: stretch;
     }
 
     @media (max-width: 720px) {
       .nav-links {
         display: none;
       }
+
       .nav-toggle {
         display: flex;
       }
     }
-    /* voci principali del menu: Servizi + Come funziona */
-      .nav-link-main {
-        font-size: 1rem;
-        font-weight: 600;
-      }
 
-      /* leggero tweak anche al bottone demo per armonizzarlo */
-      .nav-cta {
-        font-size: 0.98rem;
-        font-weight: 700;
-      }
-
-    /* === NAVBAR LOGO & BRANDING === */
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .nav-logo-img {
-      height: 58px;        /* 🔥 LOGO PIÙ GRANDE */
-      width: auto;
-      border-radius: 10px; /* leggera rifinitura premium */
-      image-rendering: auto;
-    }
-
-
-    /* Testo ChatCore sfumato */
-    .logo-word {
-      font-family: "Montserrat", Inter, sans-serif;
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: 0.3px;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(90deg, #0ea5ff 0%, #25d366 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: none; /* rimosso per rendere il gradiente pulito */
-    }
-
-
-      /* “Core” con gradiente premium */
-      .core-accent {
-        background: linear-gradient(90deg, #0ea5ff 0%, #25d366 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-    /* ===== BUTTON / CTA ===== */
+    /* ===== BUTTON ===== */
 
     .btn-primary {
       display: inline-flex;
@@ -452,8 +397,17 @@
       color: #04110a;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 12px 32px rgba(37,211,102,0.35), 0 10px 28px rgba(14,165,255,0.22);
+      box-shadow:
+        0 12px 32px rgba(37,211,102,0.35),
+        0 10px 28px rgba(14,165,255,0.22);
       white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 15px 36px rgba(37,211,102,0.42),
+        0 12px 30px rgba(14,165,255,0.28);
     }
 
     .btn-secondary {
@@ -538,7 +492,7 @@
       color: var(--muted);
     }
 
-    /* Phone mockup */
+    /* ===== PHONE ===== */
 
     .phone-wrapper {
       display: flex;
@@ -552,9 +506,10 @@
       aspect-ratio: 9 / 18;
       border-radius: 28px;
       border: 1px solid rgba(34,41,66,0.9);
-      background: radial-gradient(circle at top, rgba(148,163,253,0.25), transparent 55%),
-                  radial-gradient(circle at bottom, rgba(52,211,153,0.16), transparent 60%),
-                  #050711;
+      background:
+        radial-gradient(circle at top, rgba(148,163,253,0.25), transparent 55%),
+        radial-gradient(circle at bottom, rgba(52,211,153,0.16), transparent 60%),
+        #050711;
       box-shadow: var(--shadow-soft);
       overflow: hidden;
     }
@@ -605,57 +560,66 @@
       padding: 8px 10px;
       border-radius: 14px;
       line-height: 1.25;
-      opacity: 0;                       /* parte nascosto */
+      opacity: 0;
       transform: translateY(6px);
       transition: opacity 0.35s ease-out, transform 0.35s ease-out;
     }
 
-    /* quando aggiungiamo questa classe da JS il messaggio “entra” */
     .msg.msg-visible {
       opacity: 1;
       transform: translateY(0);
     }
-.phone-typing {
-  display: none;
-  max-width: 70%;
-  padding: 6px 10px;
-  border-radius: 14px;
-  gap: 4px;
-}
 
-/* quando sta scrivendo il cliente (bolle scure a sinistra) */
-.phone-typing.typing-left {
-  align-self: flex-start;
-  margin-left: 4px;
-  background: #020617;
-  border: 1px solid #1e293b;
-}
+    .phone-typing {
+      display: none;
+      max-width: 70%;
+      padding: 6px 10px;
+      border-radius: 14px;
+      gap: 4px;
+    }
 
-/* quando sta scrivendo il bot (bolle verdi a destra) */
-.phone-typing.typing-right {
-  align-self: flex-end;
-  margin-right: 4px;
-  background: #022c22;
-  border: 1px solid #16a34a;
-}
+    .phone-typing.typing-left {
+      align-self: flex-start;
+      margin-left: 4px;
+      background: #020617;
+      border: 1px solid #1e293b;
+    }
 
-.phone-typing-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: #9ca3af;
-  opacity: 0.5;
-  animation: typing-bounce 1s infinite ease-in-out;
-}
+    .phone-typing.typing-right {
+      align-self: flex-end;
+      margin-right: 4px;
+      background: #022c22;
+      border: 1px solid #16a34a;
+    }
 
-.phone-typing-dot:nth-child(2) { animation-delay: 0.15s; }
-.phone-typing-dot:nth-child(3) { animation-delay: 0.3s; }
+    .phone-typing-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #9ca3af;
+      opacity: 0.5;
+      animation: typing-bounce 1s infinite ease-in-out;
+    }
 
-@keyframes typing-bounce {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-  30% { transform: translateY(-3px); opacity: 1; }
-}
+    .phone-typing-dot:nth-child(2) {
+      animation-delay: 0.15s;
+    }
 
+    .phone-typing-dot:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes typing-bounce {
+      0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
+      }
+
+      30% {
+        transform: translateY(-3px);
+        opacity: 1;
+      }
+    }
 
     .msg-client {
       align-self: flex-start;
@@ -713,7 +677,7 @@
       background: #22c55e;
     }
 
-    /* ===== STRIP NICHE ===== */
+    /* ===== STRIP ===== */
 
     .strip-card {
       border-radius: var(--radius-lg);
@@ -795,22 +759,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
-      margin-top: 24px;
-    }
-
-    @media (max-width: 950px) {
-      .steps {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    /* ===== STEPS ===== */
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 28px; /* un po' più aria sotto il titolo */
+      margin-top: 28px;
     }
 
     @media (max-width: 950px) {
@@ -822,16 +771,17 @@
     .step {
       border-radius: var(--radius-md);
       border: 1px solid rgba(30,64,175,0.7);
-      background: radial-gradient(circle at top left, rgba(37,99,235,0.20), transparent 60%),
-                  rgba(12,17,31,0.98);
-      padding: 34px 18px 20px;  /* 🔥 top più alto per far spazio al numero */
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,0.20), transparent 60%),
+        rgba(12,17,31,0.98);
+      padding: 34px 18px 20px;
       position: relative;
       overflow: hidden;
     }
 
     .step-number {
       position: absolute;
-      top: 10px;      /* 🔥 non più negativo: il cerchio sta dentro la card */
+      top: 10px;
       left: 16px;
       width: 30px;
       height: 30px;
@@ -847,10 +797,139 @@
     }
 
     .step h3 {
-      margin-top: 14px;  /* testo ben distanziato dal numero */
+      margin-top: 14px;
       margin-bottom: 6px;
     }
 
+    /* ===== COLLEGA WHATSAPP ===== */
+
+    .connect-section {
+      padding-top: 40px;
+      padding-bottom: 72px;
+    }
+
+    .connect-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(37,211,102,0.45);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(37,211,102,0.13), transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(14,165,255,0.13), transparent 40%),
+        linear-gradient(180deg, rgba(15,23,42,0.98), rgba(5,8,22,0.99));
+      padding: 42px 36px;
+      box-shadow:
+        0 18px 50px rgba(0,0,0,0.55),
+        0 0 45px rgba(37,211,102,0.07);
+      text-align: center;
+    }
+
+    .connect-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .connect-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: rgba(37,211,102,0.10);
+      border: 1px solid rgba(37,211,102,0.35);
+      color: #9af2bb;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .connect-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      margin-bottom: 14px;
+    }
+
+    .connect-description {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #b8c1d8;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .connect-steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 32px 0;
+    }
+
+    .connect-step {
+      padding: 18px 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(34,43,74,0.95);
+      background: rgba(5,8,18,0.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .connect-step-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--acc-2), var(--acc-1));
+      color: #031009;
+      font-weight: 800;
+      box-shadow: 0 8px 20px rgba(37,211,102,0.22);
+    }
+
+    .connect-step-text {
+      color: #dce3f7;
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    .connect-button {
+      min-width: 310px;
+      padding: 16px 28px;
+      font-size: 1rem;
+      box-shadow:
+        0 15px 35px rgba(37,211,102,0.35),
+        0 10px 30px rgba(14,165,255,0.22);
+    }
+
+    .connect-note {
+      margin-top: 15px !important;
+      color: #7f8ba7;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 850px) {
+      .connect-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .connect-card {
+        padding: 30px 18px;
+      }
+
+      .connect-steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .connect-button {
+        min-width: 0;
+        width: 100%;
+      }
+    }
 
     /* ===== PRICING ===== */
 
@@ -912,13 +991,6 @@
       font-size: 1.7rem;
       font-weight: 800;
       margin-top: 2px;
-    }
-
-    .price-unit {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-left: 4px;
-      font-weight: 500;
     }
 
     .price-list {
@@ -999,53 +1071,6 @@
       color: var(--acc-2);
     }
 
-    /* ===== TESTIMONIALS ===== */
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 22px;
-    }
-
-    @media (max-width: 950px) {
-      .testimonials-grid {
-        grid-template-columns: repeat(2, minmax(0,1fr));
-      }
-    }
-
-    @media (max-width: 680px) {
-      .testimonials-grid {
-        grid-template-columns: minmax(0,1fr);
-      }
-    }
-
-    .testimonial-card {
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(34,43,74,0.95);
-      background: linear-gradient(180deg, #050816, #020617);
-      padding: 16px 16px 14px;
-      font-size: 0.92rem;
-    }
-
-    .testimonial-footer {
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #60a5fa, #4ade80);
-    }
-
-    .avatar-info {
-      font-size: 0.88rem;
-    }
-
     /* ===== FAQ ===== */
 
     .faq-list {
@@ -1080,6 +1105,29 @@
       margin-top: 8px;
       font-size: 0.9rem;
       color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ===== SECTION HEADERS ===== */
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .section-kicker {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #e5e9f7;
+      margin-bottom: 4px;
+    }
+
+    .section-sub {
+      font-size: 0.94rem;
+      color: var(--muted);
+      max-width: 620px;
     }
 
     /* ===== FOOTER ===== */
@@ -1115,11 +1163,18 @@
       height: 32px;
     }
 
+    .footer-links {
+      line-height: 1.8;
+    }
 
     .footer-links a {
       color: #93c5fd;
       text-decoration: none;
       margin-left: 6px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
     }
 
     /* ===== FLOATING WHATSAPP ===== */
@@ -1149,101 +1204,108 @@
       .wa-float a span.text {
         display: none;
       }
+
       .wa-float a {
         padding-inline: 12px;
       }
     }
-
-    /* ===== SECTION HEADERS ===== */
-
-    .section-header {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 6px;
-    }
-
-    .section-kicker {
-      font-size: 1.6rem;   /* 🔥 qui decidi tu quanto grande: 1.4 / 1.6 / 1.8 / 2 */
-      font-weight: 700;
-      text-transform: none;
-      letter-spacing: 0;
-      color: #e5e9f7;
-      margin-bottom: 4px;
-    }
-
-    .section-sub {
-      font-size: 0.94rem;
-      color: var(--muted);
-      max-width: 620px;
-    }
-
   </style>
 </head>
 
 <body id="top">
-  <div class="page-bg"></div>
-  <!-- poi il resto del contenuto: preloader, header, hero, ecc. -->
-<!-- PRELOADER CHATCORE — ORBITE  -->
-<div class="preloader-overlay" id="preloader">
-  <div class="loader-atom">
-    <div class="loader-orbit orbit-1"></div>
-    <div class="loader-orbit orbit-2"></div>
-    <div class="loader-orbit orbit-3"></div>
 
-    <div class="loader-core">
-      <img src="chatcorelogo3.png" alt="ChatCore Logo" />
+  <div class="page-bg"></div>
+
+  <!-- PRELOADER -->
+  <div class="preloader-overlay" id="preloader">
+    <div class="loader-atom">
+      <div class="loader-orbit orbit-1"></div>
+      <div class="loader-orbit orbit-2"></div>
+      <div class="loader-orbit orbit-3"></div>
+
+      <div class="loader-core">
+        <img src="chatcorelogo3.png" alt="ChatCore Logo" />
+      </div>
     </div>
   </div>
-</div>
 
   <!-- NAVBAR -->
-<header class="nav">
-  <div class="nav-inner">
-    <a class="logo" href="#top">
-      <img src="chatcorelogo3.png" class="nav-logo-img" alt="ChatCore logo">
-      <span class="logo-word">Chat<span class="core-accent">Core</span></span>
-    </a>
+  <header class="nav">
+    <div class="nav-inner">
 
-    <div class="nav-links">
-      <a class="nav-link nav-link-main" href="#funzioni">Servizi</a>
-      <a class="nav-link nav-link-main" href="#come-funziona">Come funziona</a>
-      <a class="nav-link nav-link-secondary" href="#prezzi">Preventivo</a>
-      <a class="nav-cta" href="https://wa.me/15556350423?text=Prova%20ChatCore" target="_blank" rel="noopener">
-        <span class="dot"></span> Demo WhatsApp
+      <a class="logo" href="#top">
+        <img src="chatcorelogo3.png" class="nav-logo-img" alt="ChatCore logo">
+        <span class="logo-word">
+          Chat<span class="core-accent">Core</span>
+        </span>
       </a>
+
+      <div class="nav-links">
+        <a class="nav-link nav-link-main" href="#funzioni">Servizi</a>
+        <a class="nav-link nav-link-main" href="#come-funziona">Come funziona</a>
+        <a class="nav-link nav-link-main" href="#whatsapp">Collega WhatsApp</a>
+        <a class="nav-link nav-link-secondary" href="#prezzi">Preventivo</a>
+
+        <a
+          class="nav-cta"
+          href="https://wa.me/15556350423?text=Prova%20ChatCore"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="dot"></span>
+          Demo WhatsApp
+        </a>
+      </div>
+
+      <button
+        id="navToggle"
+        class="nav-toggle"
+        aria-label="Apri il menu di navigazione"
+      >
+        <span></span>
+      </button>
+
     </div>
-
-    <!-- 👇 bottone hamburger con 3 linee -->
-    <button id="navToggle" class="nav-toggle" aria-label="Apri il menu di navigazione">
-      <span></span>
-    </button>
-  </div>
-</header>
-
+  </header>
 
   <!-- HERO -->
   <main>
+
     <section class="hero">
       <div class="container hero-grid">
+
         <div>
           <h1 class="hero-title-gradient">
             Crea il tuo sito,
-             Automatizzalo
-            con risposte e prenotazioni 
-            su WhatsApp          </h1>
+            Automatizzalo
+            con risposte e prenotazioni
+            su WhatsApp
+          </h1>
 
           <p class="lead hero-sub">
-            ChatCore risponde ai clienti, fa le domande giuste e raccoglie le prenotazioni in automatico, usando il tuo numero WhatsApp Business.
+            ChatCore risponde ai clienti, fa le domande giuste e raccoglie
+            le prenotazioni in automatico, usando il tuo numero WhatsApp Business.
           </p>
 
           <div class="btn-group">
-            <a class="btn-primary" href="https://wa.me/15556350423?text=Prova%20ChatCore" target="_blank" rel="noopener">
+
+            <a
+              class="btn-primary"
+              href="https://wa.me/15556350423?text=Prova%20ChatCore"
+              target="_blank"
+              rel="noopener"
+            >
               📲 Provalo su WhatsApp
             </a>
+
+            <a class="btn-secondary" href="#whatsapp">
+              Collega WhatsApp Business
+            </a>
+
             <a class="btn-secondary" href="#prezzi">
               Vai a preventivo
             </a>
+
           </div>
 
           <p class="hero-note">
@@ -1252,487 +1314,1126 @@
         </div>
 
         <div class="phone-wrapper">
+
           <div class="phone">
+
             <div class="phone-inner">
+
               <div class="phone-top">
                 <div class="phone-top-left">
+
                   <div class="phone-avatar"></div>
+
                   <div>
-                    <div style="font-weight:600;font-size:0.76rem;">ChatCore </div>
-                    <div style="font-size:0.73rem;color:#9ca3af;">online ora</div>
+                    <div style="font-weight:600;font-size:0.76rem;">
+                      ChatCore
+                    </div>
+
+                    <div style="font-size:0.73rem;color:#9ca3af;">
+                      online ora
+                    </div>
                   </div>
+
                 </div>
               </div>
 
               <div class="phone-chat">
-                      <div class="msg msg-client">
-                        Ciao 👋 posso prenotare un taglio domani pomeriggio?
-                      </div>
-                      <div class="msg msg-bot">
-                        Ciao! Certo 🙂<br />
-                        Ho questi orari liberi domani:<br />
-                        <strong>16:00 • 16:30 • 17:00</strong><br />
-                        Rispondi con l’orario che preferisci.
-                      </div>
-                      <div class="msg msg-client">
-                        Perfetto, 17:00 a nome Marco 🙌
-                      </div>
-                      <div class="msg msg-bot">
-                        Prenotazione salvata per <strong>Marco</strong> alle <strong>17:00</strong> ✅<br />
-                        Ti manderò un promemoria prima dell’appuntamento.
-                        <div class="msg-options">
-                          <span class="msg-pill">📅 Aggiungi promemoria</span>
-                          <span class="msg-pill">🕒 Cambia orario</span>
-                        </div>
-                      </div>
 
-                      <!-- SEMPRE ALLA FINE DELLA CHAT -->
-                      <div class="phone-typing" id="phoneTyping">
-                        <span class="phone-typing-dot"></span>
-                        <span class="phone-typing-dot"></span>
-                        <span class="phone-typing-dot"></span>
-                      </div>
-                    </div>
+                <div class="msg msg-client">
+                  Ciao 👋 posso prenotare un taglio domani pomeriggio?
+                </div>
 
-                    <!-- 👇 ORA phone-bottom è DENTRO phone-inner -->
-                    <div class="phone-bottom">
-                      <div class="phone-status">
-                        <span class="phone-status-dot"></span>
-                        <span>Risposta automatica ChatCore</span>
-                      </div>
-                      <div>✔✔</div>
-                    </div>
+                <div class="msg msg-bot">
+                  Ciao! Certo 🙂<br />
+                  Ho questi orari liberi domani:<br />
+                  <strong>16:00 • 16:30 • 17:00</strong><br />
+                  Rispondi con l’orario che preferisci.
+                </div>
+
+                <div class="msg msg-client">
+                  Perfetto, 17:00 a nome Marco 🙌
+                </div>
+
+                <div class="msg msg-bot">
+                  Prenotazione salvata per
+                  <strong>Marco</strong>
+                  alle
+                  <strong>17:00</strong>
+                  ✅<br />
+
+                  Ti manderò un promemoria prima dell’appuntamento.
+
+                  <div class="msg-options">
+                    <span class="msg-pill">
+                      📅 Aggiungi promemoria
+                    </span>
+
+                    <span class="msg-pill">
+                      🕒 Cambia orario
+                    </span>
                   </div>
                 </div>
+
+                <div class="phone-typing" id="phoneTyping">
+                  <span class="phone-typing-dot"></span>
+                  <span class="phone-typing-dot"></span>
+                  <span class="phone-typing-dot"></span>
+                </div>
+
               </div>
 
- 
-    </section>
+              <div class="phone-bottom">
 
-    <!-- STRIP: per chi è -->
-    <section class="container">
-      <div class="strip-card">
-        <span class="strip-title">Pensato per:</span>
-        <span class="pill"><span class="emoji">💈</span> Barbieri</span>
-        <span class="pill"><span class="emoji">💅</span> Estetiste</span>
-        <span class="pill"><span class="emoji">🦷</span> Studi dentistici</span>
-        <span class="pill"><span class="emoji">🧘‍♀️</span> Wellness</span>
-        <span class="pill"><span class="emoji">🏋️‍♀️</span> Personal trainer</span>
-        <span class="pill"><span class="emoji">🚗</span> Officine</span>
-        <span class="pill"><span class="emoji">🏨</span> B&amp;B / Agriturismi</span>
+                <div class="phone-status">
+                  <span class="phone-status-dot"></span>
+                  <span>Risposta automatica ChatCore</span>
+                </div>
+
+                <div>✔✔</div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
     </section>
 
-     <!-- FUNZIONI -->
+
+    <!-- STRIP -->
+    <section class="container">
+
+      <div class="strip-card">
+
+        <span class="strip-title">
+          Pensato per:
+        </span>
+
+        <span class="pill">
+          <span class="emoji">💈</span>
+          Barbieri
+        </span>
+
+        <span class="pill">
+          <span class="emoji">💅</span>
+          Estetiste
+        </span>
+
+        <span class="pill">
+          <span class="emoji">🦷</span>
+          Studi dentistici
+        </span>
+
+        <span class="pill">
+          <span class="emoji">🧘‍♀️</span>
+          Wellness
+        </span>
+
+        <span class="pill">
+          <span class="emoji">🏋️‍♀️</span>
+          Personal trainer
+        </span>
+
+        <span class="pill">
+          <span class="emoji">🚗</span>
+          Officine
+        </span>
+
+        <span class="pill">
+          <span class="emoji">🏨</span>
+          B&amp;B / Agriturismi
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- FUNZIONI -->
     <section class="section" id="funzioni">
+
       <div class="container">
+
         <div class="section-header">
-          <div class="section-kicker">Servizi</div>
-          <h2>Cosa possiamo fare per la tua attività</h2>
+
+          <div class="section-kicker">
+            Servizi
+          </div>
+
+          <h2>
+            Cosa possiamo fare per la tua attività
+          </h2>
+
           <p class="section-sub">
-            Dallo sviluppo del sito alla gestione dei messaggi su WhatsApp: un solo punto di riferimento per farti trovare e non perdere clienti.
+            Dallo sviluppo del sito alla gestione dei messaggi su WhatsApp:
+            un solo punto di riferimento per farti trovare e non perdere clienti.
           </p>
+
         </div>
 
         <div class="grid-3">
-          <!-- BOT WHATSAPP -->
+
           <div class="card">
+
             <div class="card-icon">💬</div>
-            <h3>Bot WhatsApp per risposte automatiche</h3>
+
+            <h3>
+              Bot WhatsApp per risposte automatiche
+            </h3>
+
             <p class="muted">
-              Accoglie i clienti, risponde alle domande frequenti (orari, prezzi, indirizzo) e li guida senza che tu debba essere sempre online.
+              Accoglie i clienti, risponde alle domande frequenti
+              (orari, prezzi, indirizzo) e li guida senza che tu debba
+              essere sempre online.
             </p>
+
           </div>
 
+
           <div class="card">
+
             <div class="card-icon">🗓️</div>
-            <h3>Gestione prenotazioni via chat</h3>
+
+            <h3>
+              Gestione prenotazioni via chat
+            </h3>
+
             <p class="muted">
-              Propone orari liberi, raccoglie nome e servizio e ti invia un riepilogo pronto da confermare o spostare.
+              Propone orari liberi, raccoglie nome e servizio e ti invia
+              un riepilogo pronto da confermare o spostare.
             </p>
+
           </div>
 
+
           <div class="card">
+
             <div class="card-icon">🔔</div>
-            <h3>Promemoria automatici ai clienti</h3>
+
+            <h3>
+              Promemoria automatici ai clienti
+            </h3>
+
             <p class="muted">
-              Manda un promemoria prima dell’appuntamento e riduce i “no-show”. Meno buchi in agenda, più tempo sfruttato bene.
+              Manda un promemoria prima dell’appuntamento e riduce i
+              “no-show”. Meno buchi in agenda, più tempo sfruttato bene.
             </p>
+
           </div>
 
-          <!-- SITO WEB + HOSTING -->
+
           <div class="card">
+
             <div class="card-icon">🖥️</div>
-            <h3>Sito web moderno per la tua attività</h3>
+
+            <h3>
+              Sito web moderno per la tua attività
+            </h3>
+
             <p class="muted">
-              Creiamo un sito vetrina veloce, responsive e chiaro, pensato per far capire subito chi sei, dove sei e cosa offri.
+              Creiamo un sito vetrina veloce, responsive e chiaro,
+              pensato per far capire subito chi sei, dove sei e cosa offri.
             </p>
+
           </div>
 
+
           <div class="card">
+
             <div class="card-icon">☁️</div>
-            <h3>Hosting e gestione tecnica</h3>
+
+            <h3>
+              Hosting e gestione tecnica
+            </h3>
+
             <p class="muted">
-              Ci occupiamo noi di hosting, configurazione dominio, certificato HTTPS e aggiornamenti tecnici, così non devi pensarci tu.
+              Ci occupiamo noi di hosting, configurazione dominio,
+              certificato HTTPS e aggiornamenti tecnici, così non devi pensarci tu.
             </p>
+
           </div>
 
+
           <div class="card">
+
             <div class="card-icon">🚀</div>
-            <h3>Lancio e collegamento al bot WhatsApp</h3>
+
+            <h3>
+              Lancio e collegamento al bot WhatsApp
+            </h3>
+
             <p class="muted">
-              Colleghiamo sito e bot: pulsante WhatsApp, QR code, link diretti. Chi visita il sito può scrivere in un tap e parlare subito con il bot.
+              Colleghiamo sito e bot: pulsante WhatsApp, QR code, link diretti.
+              Chi visita il sito può scrivere in un tap e parlare subito con il bot.
             </p>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
 
 
     <!-- COME FUNZIONA -->
     <section class="section" id="come-funziona">
+
       <div class="container">
+
         <div class="section-header">
-          <div class="section-kicker">Come funziona</div>
-          <h2>Tre step e il bot inizia a lavorare</h2>
+
+          <div class="section-kicker">
+            Come funziona
+          </div>
+
+          <h2>
+            Tre step e il bot inizia a lavorare
+          </h2>
+
           <p class="section-sub">
-            Ti seguiamo nella configurazione iniziale, poi ChatCore gestisce in autonomia la maggior parte delle richieste.
+            Ti seguiamo nella configurazione iniziale, poi ChatCore
+            gestisce in autonomia la maggior parte delle richieste.
           </p>
+
         </div>
 
         <div class="steps">
+
           <div class="step">
+
             <div class="step-number">1</div>
-            <h3>Configuriamo regole e servizi</h3>
+
+            <h3>
+              Configuriamo regole e servizi
+            </h3>
+
             <p class="muted">
-              Definiamo insieme orari, ferie, durata servizi, prezzi indicativi e cosa vuoi che il bot dica in ogni caso.
+              Definiamo insieme orari, ferie, durata servizi,
+              prezzi indicativi e cosa vuoi che il bot dica in ogni caso.
             </p>
+
           </div>
+
+
           <div class="step">
+
             <div class="step-number">2</div>
-            <h3>Colleghiamo il tuo WhatsApp</h3>
+
+            <h3>
+              Colleghiamo il tuo WhatsApp
+            </h3>
+
             <p class="muted">
-              Il bot risponde direttamente dal tuo numero WhatsApp Business. Per i clienti non cambia nulla, scrivono come sempre.
+              Il bot risponde direttamente dal tuo numero WhatsApp Business.
+              Per i clienti non cambia nulla, scrivono come sempre.
             </p>
+
           </div>
+
+
           <div class="step">
+
             <div class="step-number">3</div>
-            <h3>ChatCore inizia a lavorare</h3>
+
+            <h3>
+              ChatCore inizia a lavorare
+            </h3>
+
             <p class="muted">
-              Risponde alle richieste, propone orari liberi, raccoglie i dati e ti invia un riepilogo per confermare o spostare.
+              Risponde alle richieste, propone orari liberi,
+              raccoglie i dati e ti invia un riepilogo per confermare o spostare.
             </p>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
+
+
+    <!-- COLLEGA WHATSAPP -->
+    <section class="connect-section" id="whatsapp">
+
+      <div class="container">
+
+        <div class="connect-card">
+
+          <div class="connect-content">
+
+            <div class="connect-badge">
+              🟢 WhatsApp Business
+            </div>
+
+            <h2 class="connect-title">
+              Collega il tuo WhatsApp Business
+            </h2>
+
+            <p class="connect-description">
+              Collega il numero WhatsApp Business della tua attività a ChatCore
+              attraverso una procedura guidata e sicura. In pochi passaggi puoi
+              autorizzare il collegamento e permettere a ChatCore di gestire
+              automaticamente le conversazioni e le prenotazioni.
+            </p>
+
+
+            <div class="connect-steps">
+
+              <div class="connect-step">
+
+                <div class="connect-step-number">
+                  1
+                </div>
+
+                <div class="connect-step-text">
+                  Avvia il collegamento
+                </div>
+
+              </div>
+
+
+              <div class="connect-step">
+
+                <div class="connect-step-number">
+                  2
+                </div>
+
+                <div class="connect-step-text">
+                  Accedi al tuo account
+                </div>
+
+              </div>
+
+
+              <div class="connect-step">
+
+                <div class="connect-step-number">
+                  3
+                </div>
+
+                <div class="connect-step-text">
+                  Seleziona il tuo WhatsApp Business
+                </div>
+
+              </div>
+
+
+              <div class="connect-step">
+
+                <div class="connect-step-number">
+                  4
+                </div>
+
+                <div class="connect-step-text">
+                  Completa il collegamento
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- SOSTITUISCI SOLO IL LINK QUI SOTTO -->
+            <a
+              class="btn-primary connect-button"
+              href="IL_TUO_LINK_META"
+              target="_blank"
+              rel="noopener"
+            >
+              📱 Collega WhatsApp Business
+            </a>
+
+
+            <p class="connect-note">
+              Il collegamento viene effettuato tramite la procedura ufficiale
+              di Meta. Non è necessario installare un'applicazione.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
 
     <!-- PREVENTIVO -->
     <section class="section" id="prezzi">
+
       <div class="container">
+
         <div class="section-header">
-          <div class="section-kicker">Preventivo</div>
-          <h2>Preventivo su misura: sito web + bot WhatsApp</h2>
+
+          <div class="section-kicker">
+            Preventivo
+          </div>
+
+          <h2>
+            Preventivo su misura: sito web + bot WhatsApp
+          </h2>
+
           <p class="section-sub">
-            Ogni attività è diversa: tipo di sito, volumi di messaggi, numero di servizi e orari incidono sul lavoro da fare.
-            Per questo preferiamo costruire un preventivo chiaro su misura invece di sparare cifre a caso.
+            Ogni attività è diversa: tipo di sito, volumi di messaggi,
+            numero di servizi e orari incidono sul lavoro da fare.
+            Per questo preferiamo costruire un preventivo chiaro su misura
+            invece di sparare cifre a caso.
           </p>
+
         </div>
+
 
         <div class="pricing-grid">
-          <!-- SITO WEB + HOSTING -->
+
           <div class="price-card">
-            <div class="price-title">Sito web + hosting</div>
-            <div class="price-cost">Su preventivo</div>
+
+            <div class="price-title">
+              Sito web + hosting
+            </div>
+
+            <div class="price-cost">
+              Su preventivo
+            </div>
+
             <ul class="price-list">
+
               <li>
                 <span class="check">✓</span>
-                <span>Sito vetrina moderno, responsive e ottimizzato per attività locali.</span>
+                <span>
+                  Sito vetrina moderno, responsive e ottimizzato per attività locali.
+                </span>
               </li>
+
               <li>
                 <span class="check">✓</span>
-                <span>Configurazione dominio, HTTPS e impostazioni tecniche di base.</span>
+                <span>
+                  Configurazione dominio, HTTPS e impostazioni tecniche di base.
+                </span>
               </li>
+
               <li>
                 <span class="check">✓</span>
-                <span>Hosting gestito da noi e piccoli aggiornamenti tecnici inclusi.</span>
+                <span>
+                  Hosting gestito da noi e piccoli aggiornamenti tecnici inclusi.
+                </span>
               </li>
+
             </ul>
+
             <div class="price-footer">
-              <a class="btn-secondary" href="https://wa.me/15556350423?text=Vorrei%20un%20preventivo%20per%20sito%20web%20%2B%20hosting" target="_blank" rel="noopener">
+
+              <a
+                class="btn-secondary"
+                href="https://wa.me/15556350423?text=Vorrei%20un%20preventivo%20per%20sito%20web%20%2B%20hosting"
+                target="_blank"
+                rel="noopener"
+              >
                 Preventivo sito web
               </a>
+
             </div>
+
           </div>
 
-          <!-- BOT WHATSAPP -->
+
           <div class="price-card">
-            <div class="price-title">Bot WhatsApp per la tua attività</div>
-            <div class="price-cost">Su preventivo</div>
+
+            <div class="price-title">
+              Bot WhatsApp per la tua attività
+            </div>
+
+            <div class="price-cost">
+              Su preventivo
+            </div>
+
             <ul class="price-list">
+
               <li>
                 <span class="check">✓</span>
-                <span>Analisi dei flussi di messaggi e configurazione bot su misura.</span>
+                <span>
+                  Analisi dei flussi di messaggi e configurazione bot su misura.
+                </span>
               </li>
+
               <li>
                 <span class="check">✓</span>
-                <span>Collegamento al tuo numero WhatsApp Business e test iniziali.</span>
+                <span>
+                  Collegamento al tuo numero WhatsApp Business e test iniziali.
+                </span>
               </li>
+
               <li>
                 <span class="check">✓</span>
-                <span>Manutenzione e aggiornamenti del bot nel tempo.</span>
+                <span>
+                  Manutenzione e aggiornamenti del bot nel tempo.
+                </span>
               </li>
+
             </ul>
+
             <div class="price-footer">
-              <a class="btn-secondary" href="https://wa.me/15556350423?text=Vorrei%20un%20preventivo%20per%20bot%20WhatsApp" target="_blank" rel="noopener">
+
+              <a
+                class="btn-secondary"
+                href="https://wa.me/15556350423?text=Vorrei%20un%20preventivo%20per%20bot%20WhatsApp"
+                target="_blank"
+                rel="noopener"
+              >
                 Preventivo bot WhatsApp
               </a>
+
             </div>
+
           </div>
 
-          <!-- PACCHETTO COMPLETO -->
+
           <div class="price-card popular">
-            <span class="price-badge">Consigliato</span>
-            <div class="price-title">Pacchetto completo</div>
-            <div class="price-cost">Su preventivo</div>
+
+            <span class="price-badge">
+              Consigliato
+            </span>
+
+            <div class="price-title">
+              Pacchetto completo
+            </div>
+
+            <div class="price-cost">
+              Su preventivo
+            </div>
+
             <ul class="price-list">
+
               <li>
                 <span class="check">✓</span>
-                <span>Sito web + hosting + collegamento WhatsApp.</span>
+                <span>
+                  Sito web + hosting + collegamento WhatsApp.
+                </span>
               </li>
+
               <li>
                 <span class="check">✓</span>
-                <span>Bot WhatsApp per risposte automatiche e prenotazioni.</span>
+                <span>
+                  Bot WhatsApp per risposte automatiche e prenotazioni.
+                </span>
               </li>
+
               <li>
                 <span class="check">✓</span>
-                <span>Setup, test e lancio coordinato di sito e bot.</span>
+                <span>
+                  Setup, test e lancio coordinato di sito e bot.
+                </span>
               </li>
+
             </ul>
+
             <div class="price-footer">
-              <a class="btn-primary" href="https://wa.me/15556350423?text=Vorrei%20un%20preventivo%20per%20sito%20%2B%20bot%20WhatsApp" target="_blank" rel="noopener">
+
+              <a
+                class="btn-primary"
+                href="https://wa.me/15556350423?text=Vorrei%20un%20preventivo%20per%20sito%20%2B%20bot%20WhatsApp"
+                target="_blank"
+                rel="noopener"
+              >
                 Preventivo completo
               </a>
+
             </div>
+
           </div>
+
         </div>
 
+
         <div style="margin-top:16px;font-size:0.86rem;color:#9ca3af;max-width:720px;">
-          Nel messaggio WhatsApp puoi indicare cosa ti serve (solo sito, solo bot, oppure entrambi),
-          il tipo di attività, la città e se hai già un sito o un numero WhatsApp Business.
-          Ti rispondiamo con domande mirate e un preventivo chiaro, senza sorprese.
+
+          Nel messaggio WhatsApp puoi indicare cosa ti serve
+          (solo sito, solo bot, oppure entrambi), il tipo di attività,
+          la città e se hai già un sito o un numero WhatsApp Business.
+          Ti rispondiamo con domande mirate e un preventivo chiaro,
+          senza sorprese.
+
         </div>
+
       </div>
+
     </section>
+
 
     <!-- DEMO -->
     <section class="section" id="demo">
+
       <div class="container">
+
         <div class="section-header">
-          <div class="section-kicker">Demo</div>
-          <h2>Vuoi vederlo lavorare davvero?</h2>
+
+          <div class="section-kicker">
+            Demo
+          </div>
+
+          <h2>
+            Vuoi vederlo lavorare davvero?
+          </h2>
+
           <p class="section-sub">
-            Puoi provare una demo reale direttamente su WhatsApp. Scrivi al bot come farebbe un cliente e guarda come risponde.
+            Puoi provare una demo reale direttamente su WhatsApp.
+            Scrivi al bot come farebbe un cliente e guarda come risponde.
           </p>
+
         </div>
+
 
         <div class="demo-grid">
-          <div class="demo-card">
-            <div class="demo-mini-title">📲 Demo su WhatsApp</div>
-            <p class="muted">
-              Apri WhatsApp e invia il messaggio<br />
-              <strong>“Prova ChatCore”</strong> al numero della demo.
-            </p>
-            <div style="margin-top:14px;">
-              <a class="btn-primary" href="https://wa.me/15556350423?text=Prova%20ChatCore" target="_blank" rel="noopener">
-                Apri la demo su WhatsApp
-              </a>
-            </div>
-            <p class="muted" style="margin-top:10px;font-size:0.86rem;">
-              Nota: la demo è pensata per mostrare come il bot risponde, non per prenotare davvero presso una singola attività.
-            </p>
-          </div>
 
           <div class="demo-card">
-            <div class="demo-mini-title">Cosa puoi provare nella demo</div>
-            <ul class="demo-list">
-              <li>Chiedere un appuntamento in un giorno preciso.</li>
-              <li>Chiedere quali servizi sono disponibili.</li>
-              <li>Simulare la prenotazione con nome e orario.</li>
-              <li>Vedere come il bot gestisce domande base tipo “prezzi” o “indirizzo”.</li>
-            </ul>
+
+            <div class="demo-mini-title">
+              📲 Demo su WhatsApp
+            </div>
+
+            <p class="muted">
+              Apri WhatsApp e invia il messaggio<br />
+              <strong>“Prova ChatCore”</strong>
+              al numero della demo.
+            </p>
+
+            <div style="margin-top:14px;">
+
+              <a
+                class="btn-primary"
+                href="https://wa.me/15556350423?text=Prova%20ChatCore"
+                target="_blank"
+                rel="noopener"
+              >
+                Apri la demo su WhatsApp
+              </a>
+
+            </div>
+
+            <p
+              class="muted"
+              style="margin-top:10px;font-size:0.86rem;"
+            >
+              Nota: la demo è pensata per mostrare come il bot risponde,
+              non per prenotare davvero presso una singola attività.
+            </p>
+
           </div>
+
+
+          <div class="demo-card">
+
+            <div class="demo-mini-title">
+              Cosa puoi provare nella demo
+            </div>
+
+            <ul class="demo-list">
+
+              <li>
+                Chiedere un appuntamento in un giorno preciso.
+              </li>
+
+              <li>
+                Chiedere quali servizi sono disponibili.
+              </li>
+
+              <li>
+                Simulare la prenotazione con nome e orario.
+              </li>
+
+              <li>
+                Vedere come il bot gestisce domande base tipo
+                “prezzi” o “indirizzo”.
+              </li>
+
+            </ul>
+
+          </div>
+
         </div>
+
       </div>
+
     </section>
+
 
     <!-- FAQ -->
     <section class="section">
+
       <div class="container">
+
         <div class="section-header">
-          <div class="section-kicker">Domande frequenti</div>
-          <h2>FAQ</h2>
+
+          <div class="section-kicker">
+            Domande frequenti
+          </div>
+
+          <h2>
+            FAQ
+          </h2>
+
         </div>
+
 
         <div class="faq-list">
+
           <details>
-            <summary>Serve un’app ai clienti per usare ChatCore?</summary>
+
+            <summary>
+              Serve un’app ai clienti per usare ChatCore?
+            </summary>
+
             <p>
-              No. I clienti continuano a usare WhatsApp come sempre. Scrivono al tuo numero, e dietro le quinte risponde ChatCore.
+              No. I clienti continuano a usare WhatsApp come sempre.
+              Scrivono al tuo numero, e dietro le quinte risponde ChatCore.
             </p>
+
           </details>
+
+
           <details>
-            <summary>Posso cambiare i testi dei messaggi?</summary>
+
+            <summary>
+              Posso cambiare i testi dei messaggi?
+            </summary>
+
             <p>
-              Sì. I testi vengono impostati su misura per la tua attività. Possiamo aggiornarli nel tempo in base a come preferisci comunicare.
+              Sì. I testi vengono impostati su misura per la tua attività.
+              Possiamo aggiornarli nel tempo in base a come preferisci comunicare.
             </p>
+
           </details>
+
+
           <details>
-            <summary>Cosa succede se un cliente scrive fuori orario?</summary>
+
+            <summary>
+              Cosa succede se un cliente scrive fuori orario?
+            </summary>
+
             <p>
-              ChatCore risponde comunque, spiegando quando sei aperto e proponendo di lasciare i dati per essere ricontattato o fissare un appuntamento.
+              ChatCore risponde comunque, spiegando quando sei aperto
+              e proponendo di lasciare i dati per essere ricontattato
+              o fissare un appuntamento.
             </p>
+
           </details>
+
+
           <details>
-            <summary>Come gestite privacy e dati dei clienti?</summary>
+
+            <summary>
+              Come gestite privacy e dati dei clienti?
+            </summary>
+
             <p>
-              Usiamo solo i dati minimi necessari a gestire la prenotazione (nome, contatto, data/ora). I log restano interni all’attività. I dettagli completi sono indicati nella tua informativa privacy.
+              ChatCore tratta i dati necessari al funzionamento del servizio,
+              come i dati di contatto e quelli necessari alla gestione delle
+              prenotazioni. I contenuti delle conversazioni non vengono
+              conservati come storico dei messaggi. Per maggiori informazioni
+              consulta la nostra
+              <a href="/privacy" style="color:#93c5fd;">
+                Privacy Policy
+              </a>.
             </p>
+
           </details>
+
+
           <details>
-            <summary>Posso disattivare il bot quando voglio?</summary>
+
+            <summary>
+              Posso disattivare il bot quando voglio?
+            </summary>
+
             <p>
-              Sì. È possibile mettere ChatCore “in pausa” in caso di ferie o chiusura, così i clienti ricevono un messaggio dedicato invece del flusso standard.
+              Sì. È possibile mettere ChatCore “in pausa” in caso di ferie
+              o chiusura, così i clienti ricevono un messaggio dedicato
+              invece del flusso standard.
             </p>
+
           </details>
+
         </div>
+
       </div>
+
     </section>
+
   </main>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-  <div class="footer-left">
-    <img src="chatcorelogo3.png" alt="ChatCore Logo" class="footer-mini-logo">
-    <span><strong>ChatCore</strong></span>
-  </div>
 
-    <div class="footer-links">
-      © 2025 ChatCore •
-      <a href="privacy.html">Privacy</a>
-      <span>• Questo sito non usa cookie di profilazione né analytics di terze parti.</span>
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-inner">
+
+      <div class="footer-left">
+
+        <img
+          src="chatcorelogo3.png"
+          alt="ChatCore Logo"
+          class="footer-mini-logo"
+        >
+
+        <span>
+          <strong>ChatCore</strong>
+        </span>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        © 2026 ChatCore •
+
+        <a href="/privacy">
+          Privacy
+        </a>
+
+        •
+
+        <a href="/terms">
+          Termini e Condizioni
+        </a>
+
+        •
+
+        <a href="mailto:info@chatcore.it">
+          Contatti
+        </a>
+
+        <br />
+
+        <span>
+          Questo sito non usa cookie di profilazione né analytics di terze parti.
+        </span>
+
+      </div>
+
     </div>
-  </div>
-</footer>
+
+  </footer>
 
 
   <!-- FLOATING WHATSAPP -->
   <div class="wa-float">
-    <a href="https://wa.me/15556350423?text=Ciao%2C%20vorrei%20provare%20ChatCore" target="_blank" rel="noopener">
-      💬 <span class="text">Chatta ora</span>
+
+    <a
+      href="https://wa.me/15556350423?text=Ciao%2C%20vorrei%20provare%20ChatCore"
+      target="_blank"
+      rel="noopener"
+    >
+      💬
+      <span class="text">
+        Chatta ora
+      </span>
     </a>
+
   </div>
-<script>
-  // Navbar mobile toggle
-  const navToggle = document.getElementById('navToggle');
-  const nav = document.querySelector('.nav');
 
-  if (navToggle) {
-    navToggle.addEventListener('click', () => {
-      nav.classList.toggle('nav-mobile-open');
-    });
-  }
 
-  // Smooth scroll per anchor interni
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', evt => {
-      const href = link.getAttribute('href');
-      if (href && href.length > 1) {
-        const target = document.querySelector(href);
-        if (target) {
-          evt.preventDefault();
-          nav.classList.remove('nav-mobile-open');
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  <script>
+
+    // ===== NAVBAR MOBILE =====
+
+    const navToggle = document.getElementById('navToggle');
+    const nav = document.querySelector('.nav');
+
+    if (navToggle) {
+
+      navToggle.addEventListener('click', () => {
+        nav.classList.toggle('nav-mobile-open');
+      });
+
+    }
+
+
+    // ===== SMOOTH SCROLL =====
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+      link.addEventListener('click', evt => {
+
+        const href = link.getAttribute('href');
+
+        if (href && href.length > 1) {
+
+          const target = document.querySelector(href);
+
+          if (target) {
+
+            evt.preventDefault();
+
+            nav.classList.remove('nav-mobile-open');
+
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+
+          }
+
         }
-      }
-    });
-  });
-  // Animazione chat nel telefono
-  function initPhoneChatAnimation() {
-    const phoneChat = document.querySelector('.phone-chat');
-    if (!phoneChat) return;
 
-    const msgs = Array.from(phoneChat.querySelectorAll('.msg'));
-    const typing = document.getElementById('phoneTyping');
-    if (!msgs.length || !typing) return;
+      });
 
-    // reset iniziale
-    msgs.forEach(msg => msg.classList.remove('msg-visible'));
-    typing.style.display = 'none';
-    typing.classList.remove('typing-left', 'typing-right');
-
-    const steps = [];
-
-    // Costruisco la sequenza: prima puntini (lato giusto), poi messaggio
-    msgs.forEach((msg, index) => {
-      const isBot = msg.classList.contains('msg-bot');
-      const role = isBot ? 'bot' : 'client';
-
-      // se vuoi saltare i puntini sul PRIMO messaggio, metti: if (index > 0) { ... }
-      steps.push({ type: 'typing', role, duration: 800 });
-      steps.push({ type: 'show', msg, duration: 1600 });
     });
 
-    let i = 0;
 
-    function runStep() {
-      if (i >= steps.length) {
-        typing.style.display = 'none';
-        return;
+    // ===== ANIMAZIONE CHAT =====
+
+    function initPhoneChatAnimation() {
+
+      const phoneChat = document.querySelector('.phone-chat');
+
+      if (!phoneChat) return;
+
+      const msgs = Array.from(
+        phoneChat.querySelectorAll('.msg')
+      );
+
+      const typing = document.getElementById('phoneTyping');
+
+      if (!msgs.length || !typing) return;
+
+      msgs.forEach(msg => {
+        msg.classList.remove('msg-visible');
+      });
+
+      typing.style.display = 'none';
+
+      typing.classList.remove(
+        'typing-left',
+        'typing-right'
+      );
+
+
+      const steps = [];
+
+
+      msgs.forEach((msg) => {
+
+        const isBot =
+          msg.classList.contains('msg-bot');
+
+        const role =
+          isBot ? 'bot' : 'client';
+
+
+        steps.push({
+          type: 'typing',
+          role,
+          duration: 800
+        });
+
+
+        steps.push({
+          type: 'show',
+          msg,
+          duration: 1600
+        });
+
+      });
+
+
+      let i = 0;
+
+
+      function runStep() {
+
+        if (i >= steps.length) {
+
+          typing.style.display = 'none';
+
+          return;
+        }
+
+
+        const step = steps[i];
+
+
+        if (step.type === 'typing') {
+
+          phoneChat.appendChild(typing);
+
+          typing.style.display = 'flex';
+
+          const isBot =
+            step.role === 'bot';
+
+          typing.classList.toggle(
+            'typing-right',
+            isBot
+          );
+
+          typing.classList.toggle(
+            'typing-left',
+            !isBot
+          );
+
+        }
+
+
+        else if (step.type === 'show') {
+
+          typing.style.display = 'none';
+
+          step.msg.classList.add(
+            'msg-visible'
+          );
+
+        }
+
+
+        i++;
+
+        setTimeout(
+          runStep,
+          step.duration
+        );
+
       }
 
-      const step = steps[i];
 
-      if (step.type === 'typing') {
-        // metto i puntini sempre in fondo alla chat
-        phoneChat.appendChild(typing);
+      runStep();
 
-        typing.style.display = 'flex';
-
-        const isBot = step.role === 'bot';
-        typing.classList.toggle('typing-right', isBot);   // bot a destra
-        typing.classList.toggle('typing-left', !isBot);   // cliente a sinistra
-
-      } else if (step.type === 'show') {
-        typing.style.display = 'none';
-        step.msg.classList.add('msg-visible');
-      }
-
-      i++;
-      setTimeout(runStep, step.duration);
     }
 
-    runStep();
-  }
+
+    // ===== PRELOADER =====
+
+    window.addEventListener('load', () => {
+
+      const preloader =
+        document.getElementById('preloader');
 
 
-   // PRELOADER: nascondi quando la pagina ha finito di caricare
-  window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
+      if (preloader) {
 
-    // nascondo il preloader
-    if (preloader) {
-      setTimeout(() => {
-        preloader.classList.add('hidden');
-        // dopo il preloader facciamo partire l'animazione del telefono
+        setTimeout(() => {
+
+          preloader.classList.add('hidden');
+
+          initPhoneChatAnimation();
+
+        }, 1400);
+
+      }
+
+      else {
+
         initPhoneChatAnimation();
-      }, 1400);
-    } else {
-      // se per qualche motivo non c'è il preloader, avvio subito l'animazione
-      initPhoneChatAnimation();
-    }
-  });
-</script>
+
+      }
+
+    });
+
+  </script>
 
 </body>
 </html>
