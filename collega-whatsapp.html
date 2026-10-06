@@ -41,47 +41,80 @@
         <div class="step"><div class="step-num">2</div><strong>Seleziona l'attività</strong><span>Scegli o crea il Business Portfolio della tua attività.</span></div>
         <div class="step"><div class="step-num">3</div><strong>Verifica il numero</strong><span>Inserisci il numero WhatsApp e conferma il codice richiesto da Meta.</span></div>
       </div>
-      <button class="cta" id="connectBtn" type="button"><span>💬</span><span>Avvia collegamento</span></button>
+      <button class="cta" id="connectBtn" type="button"><span>💬</span><span>Collega WhatsApp</span></button>
       <div id="status" class="status" role="status" aria-live="polite"></div>
       <p class="note">ChatCore non riceve la tua password Facebook/Meta. L'autorizzazione viene gestita direttamente da Meta.</p>
     </section>
   </main>
   <script>
     const META_APP_ID = "828097236621663";
-    const EMBEDDED_SIGNUP_CONFIG_ID = "3175679455925769";
-    const CHATCORE_BACKEND_ENDPOINT = "";
+    const EMBEDDED_SIGNUP_CONFIG_ID = "1415244470787206";
+    const CHATCORE_BACKEND_ENDPOINT = "https://bot.chatcore.it/onboarding/embedded-signup";
 
     const statusBox = document.getElementById("status");
     const connectBtn = document.getElementById("connectBtn");
-    const signupData = {code:null,waba_id:null,phone_number_id:null};
+    const signupData = {code:null,waba_id:null,phone_number_id:null,business_id:null};
+    let sentToBackend=false;
 
     function showStatus(message,type="ok"){statusBox.textContent=message;statusBox.className=`status show ${type}`}
 
-    window.fbAsyncInit=function(){FB.init({appId:META_APP_ID,autoLogAppEvents:true,xfbml:true,version:"v23.0"})};
+    window.fbAsyncInit=function(){FB.init({appId:META_APP_ID,autoLogAppEvents:true,xfbml:true,version:"v26.0"})};
     (function(d,s,id){if(d.getElementById(id))return;const js=d.createElement(s);js.id=id;js.async=true;js.defer=true;js.crossOrigin="anonymous";js.src="https://connect.facebook.net/en_US/sdk.js";const fjs=d.getElementsByTagName(s)[0];fjs.parentNode.insertBefore(js,fjs)}(document,"script","facebook-jssdk"));
 
     window.addEventListener("message",function(event){
       if(event.origin!=="https://www.facebook.com"&&event.origin!=="https://web.facebook.com")return;
       let data=event.data;try{if(typeof data==="string")data=JSON.parse(data)}catch(_){return}
       if(!data||data.type!=="WA_EMBEDDED_SIGNUP")return;
-      if(data.event==="FINISH"){signupData.waba_id=data.data?.waba_id||null;signupData.phone_number_id=data.data?.phone_number_id||null;showStatus("Numero WhatsApp collegato correttamente a ChatCore.","ok");sendToBackendIfReady()}
-      if(data.event==="CANCEL")showStatus("Configurazione interrotta. Puoi riprovare quando vuoi.","err");
-      if(data.event==="ERROR")showStatus("Meta ha restituito un errore durante il collegamento. Riprova.","err");
+      const ev=data.event;const d=data.data||{};
+      if(ev==="FINISH"||ev==="FINISH_WHATSAPP_BUSINESS_APP_ONBOARDING"){
+        signupData.waba_id=d.waba_id||signupData.waba_id;
+        signupData.phone_number_id=d.phone_number_id||signupData.phone_number_id;
+        signupData.business_id=d.business_id||signupData.business_id;
+        sendToBackendIfReady();
+      }else if(ev==="FINISH_ONLY_WABA"){
+        signupData.waba_id=d.waba_id||signupData.waba_id;
+        signupData.business_id=d.business_id||signupData.business_id;
+        showStatus("Flusso completato senza numero WhatsApp. Torna indietro, scegli o inserisci un numero e riprova.","err");
+      }else if(ev==="CANCEL"){
+        showStatus("Configurazione interrotta. Puoi riprovare quando vuoi.","err");
+      }else if(ev==="ERROR"){
+        showStatus("Meta ha restituito un errore durante il collegamento. Riprova.","err");
+      }
     });
 
     connectBtn.addEventListener("click",function(){
       if(META_APP_ID.includes("INSERISCI_QUI")){showStatus("Prima inserisci l'App ID Meta di ChatCore nel file HTML.","err");return}
       if(typeof FB==="undefined"){showStatus("Il collegamento a Meta non è ancora pronto. Ricarica la pagina e riprova.","err");return}
       connectBtn.disabled=true;
-      FB.login(function(response){connectBtn.disabled=false;if(response.authResponse?.code){signupData.code=response.authResponse.code;sendToBackendIfReady()}else if(!response.authResponse){showStatus("Accesso Meta non completato.","err")}},
-      {config_id:EMBEDDED_SIGNUP_CONFIG_ID,response_type:"code",override_default_response_type:true,extras:{setup:{},featureType:"whatsapp_embedded_signup",sessionInfoVersion:"3"}})
+      FB.login(function(response){
+        connectBtn.disabled=false;
+        if(response.authResponse&&response.authResponse.code){
+          signupData.code=response.authResponse.code;
+          sendToBackendIfReady();
+          setTimeout(function(){
+            if(!sentToBackend&&!signupData.waba_id)showStatus("Meta non ha restituito i dati del numero. Riprova il collegamento.","err");
+          },5000);
+        }else if(!response.authResponse){
+          showStatus("Accesso Meta non completato.","err");
+        }},
+      {config_id:EMBEDDED_SIGNUP_CONFIG_ID,response_type:"code",override_default_response_type:true,extras:{setup:{}}})
     });
 
     async function sendToBackendIfReady(){
-      if(!CHATCORE_BACKEND_ENDPOINT)return;
+      if(!CHATCORE_BACKEND_ENDPOINT||sentToBackend)return;
       if(!signupData.code||!signupData.waba_id||!signupData.phone_number_id)return;
-      try{const response=await fetch(CHATCORE_BACKEND_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(signupData)});if(!response.ok)throw new Error("Backend error")}
-      catch(err){console.error(err);showStatus("WhatsApp collegato, ma ChatCore non è riuscito a salvare automaticamente i dati.","err")}
+      sentToBackend=true;
+      try{
+        const payload=Object.assign({},signupData,{redirect_uri:window.location.href.split("#")[0]});
+        const response=await fetch(CHATCORE_BACKEND_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+        const body=await response.json().catch(function(){return null});
+        if(!response.ok)throw new Error((body&&body.detail)?body.detail:"errore del server");
+        showStatus("WhatsApp collegato a ChatCore"+(body&&body.client?" — cliente: "+body.client:"")+". Ora il bot è attivo su questo numero.","ok");
+      }catch(err){
+        sentToBackend=false;
+        console.error(err);
+        showStatus("Collegamento riuscito con Meta, ma il salvataggio sul server è fallito ("+err.message+"). Il codice dura pochi secondi: riprova subito premendo di nuovo il pulsante.","err");
+      }
     }
   </script>
 </body>
